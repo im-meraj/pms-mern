@@ -56,6 +56,17 @@ export const getSpecificLeaveApplication = createAsyncThunk("leaveApplicationEmp
     }
 })
 
+//Update a specific leave application status
+export const updateLeaveApplicationStatus = createAsyncThunk("leaveApplicationEmployee/updateStatus", async (leaveApplication, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token;
+        return await leaveService.updateLeaveApplicationStatus(leaveApplication, token);
+    } catch (error) {
+        const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+        return thunkAPI.rejectWithValue(message);
+    }
+})
+
 // Delete a department
 // export const deleteDepartment = createAsyncThunk("department/deleteDepartment", async (id, thunkAPI) => {
 //     try {

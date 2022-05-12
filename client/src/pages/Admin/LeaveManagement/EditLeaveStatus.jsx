@@ -1,19 +1,20 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
-import { getSpecificLeaveApplication, updateLeaveApplicationStatus } from "../../features/leave/leaveSlice";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
+import { getSpecificLeaveApplication, updateLeaveApplicationStatus } from "../../../features/leave/leaveSlice";
 
-const Modal = ({ open, onClose }) => {
+const EditLeaveStatus = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  console.log(id);
 
   const { leaveApplication } = useSelector((state) => state.leave);
 
   useEffect(() => {
-    if (id) {
-      dispatch(getSpecificLeaveApplication(id));
-    }
-  }, [dispatch, id]);
+    dispatch(getSpecificLeaveApplication(id));
+  },[dispatch, id]);
 
   const [formData, setFormData] = useState({
     _id: id,
@@ -35,20 +36,31 @@ const Modal = ({ open, onClose }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     dispatch(updateLeaveApplicationStatus(formData));
-    onClose();
+    navigate("/admin/manageLeaveApplications");
   };
 
-  if (!open) return null;
-
   return (
-    <Link to="/admin/manageLeaveApplications">
-      <div className="overlay" onClick={onClose}>
-        <div
-          className="modal__container"
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
-        >
+    <>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-around",
+        }}
+      >
+        <Link to="/admin/manageLeaveApplications">
+          <FaArrowLeft /> Back to Leave Applications
+        </Link>
+        <div className="page__heading">
+          <h1>
+            Update Status of <br />
+            Leave Application
+          </h1>
+        </div>
+      </div>
+      {leaveApplication && (
+        <div className="modal__container">
           <div className="modal__content">
             <h1>Manage</h1>
             <section className="form">
@@ -126,14 +138,20 @@ const Modal = ({ open, onClose }) => {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="Status">Status</label>
+                  <label htmlFor="Status">Change Leave Application Status</label>
+                  {/* <span style={{ marginBottom: "4px" }}>
+                    Current Status: {leaveApplication[0].Status}
+                  </span> */}
                   <select
                     className="form-control"
                     id="Status"
                     name="Status"
                     onChange={onChange}
+                    focus={true}
                   >
-                    <option value="Pending">Pending</option>
+                    <option value="">
+                      Current Status: {leaveApplication[0].Status}
+                    </option>
                     <option value="Approved">Approved</option>
                     <option value="Rejected">Rejected</option>
                   </select>
@@ -148,9 +166,9 @@ const Modal = ({ open, onClose }) => {
             </section>
           </div>
         </div>
-      </div>
-    </Link>
+      )}
+    </>
   );
 };
 
-export default Modal;
+export default EditLeaveStatus;

@@ -1,4 +1,4 @@
-import { LeaveApplicationModel, UserModel } from "../../models/allModels";
+import { LeaveApplicationModel } from "../../models/allModels";
 import mongoose from "mongoose";
 
 /**
@@ -49,22 +49,47 @@ const getAllLeaveApplications = async (req, res) => {
     try {
         // const leaveApplications = await LeaveApplicationModel.find().populate();
         const leaveApplications = await LeaveApplicationModel.aggregate([
-            {
-                $match: {
-                    
-                }
+          {
+            $match: {},
+          },
+          {
+            $addFields: {
+              TotalDays: {
+                $dateDiff: {
+                  startDate: "$FromDate",
+                  endDate: "$ToDate",
+                  unit: "day",
+                },
+              },
             },
-            {
-                $addFields: {
-                    TotalDays: {
-                        $dateDiff: {
-                            startDate: "$FromDate",
-                            endDate: "$ToDate",
-                            unit: "day"
-                        }
-                    }
-                }
+          },
+          {
+            $lookup: {
+              from: "users",
+              localField: "employee",
+              foreignField: "_id",
+              as: "employee",
             },
+          },
+          {
+            $unwind: {
+              path: "$employee",
+            },
+          },
+          {
+            $project: {
+              LeaveType: 1,
+              FromDate: 1,
+              ToDate: 1,
+              Reason: 1,
+              Status: 1,
+              TotalDays: 1,
+              employee: {
+                fullname: 1,
+                _id: 1,
+              },
+            },
+          },
         ]);
         return res.status(200).json(leaveApplications);
     } catch (error) {
@@ -150,32 +175,25 @@ const setLeaveApplication = async (req, res) => {
 }
 
 /**
-Route:      /department:id
+Route:      /leaveApplication/one:id
 Method:     PUT
 Access:     Private
-Description: Update an department details
+Description: Update a leave application status
 Params:     id
 **/
-// const updateDepartment = async (req, res) => {
-//     try {
-//         const department = await DepartmentModel.findById(req.params.id);
-//         if (!department) {
-//             return res.status(404).json({
-//                 message: 'Department not found',
-//             });
-//         }
-//         const updatedDepartment = await DepartmentModel.findByIdAndUpdate(req.params.id, req.body, {
-//             new: true,
-//         });
-//         return res.status(200).json(updatedDepartment);
-//     } catch (error) {
-//         return res.status(500).json({
-//             message: 'Error updating department',
-//             error
-//         });
-//     }
-
-// }
+const updateLeaveApplicationStatus = async (req, res) => {
+    try {
+        const leaveApplication = await LeaveApplicationModel.findByIdAndUpdate(req.params.id, {
+            Status: req.body.Status
+        }, { new: true });
+        return res.status(200).json(leaveApplication);
+    } catch (error) {
+        return res.status(500).json({
+            message: 'Error updating leave application',
+            error
+        });
+    }
+}
 
 // /**
 // Route:      /department:id
@@ -201,5 +219,6 @@ export {
     getLeaveApplications,
     setLeaveApplication,
     getAllLeaveApplications,
-    getSpecificLeaveApplication
+    getSpecificLeaveApplication,
+    updateLeaveApplicationStatus
 }

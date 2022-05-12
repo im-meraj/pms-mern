@@ -5,28 +5,21 @@ import { RiDeleteBin6Line } from 'react-icons/ri';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
 import Modal from '../../../components/LeaveManagement/Modal';
-import { getAllLeaveApplications } from '../../../features/leave/leaveSlice';
+import { getAllLeaveApplications, getSpecificLeaveApplication } from '../../../features/leave/leaveSlice';
 
 const ManageLeave = () => {
-    // const [isActive, setIsActive] = useState(false);
     const [openModal, setOpenModal] = useState(false);
+
 
 
     // const { user } = useSelector((state) => state.auth);
     const { allLeaveApplications } = useSelector((state) => state.leave);
-    const { isSuccess } = useSelector((state) => state.leave);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if(!isSuccess) {
         dispatch(getAllLeaveApplications());
-        }
-    }, [isSuccess, dispatch]);
-
-    const onClick = () => {
-        setOpenModal(true);
-    }
+    }, [dispatch]);
 
   return (
     <>
@@ -41,6 +34,8 @@ const ManageLeave = () => {
                   <table className="table" cellPadding={5} cellSpacing={30}>
                       <thead>
                           <tr>
+                              <th>Employee ID</th>
+                              <th>Employee Name</th>
                               <th>Leave Type</th>
                               <th>From Date</th>
                               <th>To Date</th>
@@ -53,6 +48,8 @@ const ManageLeave = () => {
                       <tbody>
                           {allLeaveApplications.map((leave, index) => (
                               <tr key={index}>
+                                  <td>{leave.employee._id}</td>
+                                  <td>{leave.employee.fullname}</td>
                                   <td>{leave.LeaveType}</td>
                                   <td>{new Date(leave.FromDate).toLocaleDateString()}</td>
                                   <td>{new Date(leave.ToDate).toLocaleDateString()}</td>
@@ -64,7 +61,9 @@ const ManageLeave = () => {
                                         </span>
                                     </td>
                                   <td>
-                                      <Link to={`/admin/manageLeaveApplications/${leave._id}`}><button className="btn-secondary btn-edit" style={{ fontSize: '12px' }} onClick={onClick}><FiEdit /></button></Link>
+                                      <Link to={`/admin/editLeaveStatus/${leave._id}`}><button className="btn-secondary btn-edit" style={{ fontSize: '12px' }} onClick={()=> {
+                                          dispatch(getSpecificLeaveApplication(leave._id));
+                                      }}><FiEdit /></button></Link>
                                       <button className="btn-danger btn-delete" style={{ fontSize: '12px' }}><RiDeleteBin6Line /></button>
                                   </td>
                               </tr>

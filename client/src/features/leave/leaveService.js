@@ -64,11 +64,27 @@ export const getSpecificLeaveApplication = async (id, token) => {
     }
 }
 
+// Update a specific leave application status
+export const updateLeaveApplicationStatus = async (leaveApplication, token) => {
+    try {
+        const res = await axios.put(`${API_URL}one/${leaveApplication._id}`, leaveApplication, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        return res.data;
+    } catch (error) {
+        const message = (error.res && error.res.data && error.res.data.message) || error.message || error.toString();
+        throw new Error(message);
+    }
+}
+
 const leaveService = {
     addLeaveApplication,
     getLeaveApplications,
     getAllLeaveApplications,
-    getSpecificLeaveApplication
+    getSpecificLeaveApplication,
+    updateLeaveApplicationStatus
 }
 
 export default leaveService;

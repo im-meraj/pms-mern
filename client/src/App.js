@@ -15,6 +15,7 @@ import DesignationUpdate from './pages/Designation/DesignationUpdate';
 import EditDetails from './pages/Employee/EditDetails';
 import LeaveApplication from './pages/Employee/LeaveApplication';
 import ManageLeave from './pages/Admin/LeaveManagement/ManageLeave';
+import EditLeaveStatus from './pages/Admin/LeaveManagement/EditLeaveStatus';
 
 function App() {
   return (
@@ -57,8 +58,8 @@ function App() {
               element={<ManageLeave />}
             />
             <Route
-              path="/admin/manageLeaveApplications/:id"
-              element={<ManageLeave />}
+              path="/admin/editLeaveStatus/:id"
+              element={<EditLeaveStatus />}
             />
           </Routes>
         </div>
