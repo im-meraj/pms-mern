@@ -13,13 +13,13 @@ const Login = () => {
 
   const { email, password } = formData;
 
-  console.log(formData);
+  // console.log(formData);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth);
-  console.log(user);
+  // console.log(user);
 
   const userJSON = JSON.parse(localStorage.getItem("user"));
 

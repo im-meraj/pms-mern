@@ -139,9 +139,6 @@ const EditLeaveStatus = () => {
 
                 <div className="form-group">
                   <label htmlFor="Status">Change Leave Application Status</label>
-                  {/* <span style={{ marginBottom: "4px" }}>
-                    Current Status: {leaveApplication[0].Status}
-                  </span> */}
                   <select
                     className="form-control"
                     id="Status"
@@ -152,8 +149,8 @@ const EditLeaveStatus = () => {
                     <option value="">
                       Current Status: {leaveApplication[0].Status}
                     </option>
-                    <option value="Approved">Approved</option>
-                    <option value="Rejected">Rejected</option>
+                    <option value="Approved">Approve</option>
+                    <option value="Rejected">Reject</option>
                   </select>
                 </div>
 
