@@ -5,6 +5,7 @@ import { RiDeleteBin6Line } from 'react-icons/ri';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
 import Modal from '../../../components/LeaveManagement/Modal';
+import Spinner from '../../../components/Spinner';
 import { getAllLeaveApplications, getSpecificLeaveApplication } from '../../../features/leave/leaveSlice';
 
 const ManageLeave = () => {
@@ -13,13 +14,17 @@ const ManageLeave = () => {
 
 
     // const { user } = useSelector((state) => state.auth);
-    const { allLeaveApplications } = useSelector((state) => state.leave);
+    const { allLeaveApplications, isLoading } = useSelector((state) => state.leave);
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getAllLeaveApplications());
     }, [dispatch]);
+
+    if (isLoading) {
+        return <Spinner />;
+    }
 
   return (
     <>

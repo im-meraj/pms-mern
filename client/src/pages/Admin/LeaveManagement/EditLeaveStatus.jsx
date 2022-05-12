@@ -2,19 +2,28 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
-import { getSpecificLeaveApplication, updateLeaveApplicationStatus } from "../../../features/leave/leaveSlice";
+import { getSpecificLeaveApplication, reset, updateLeaveApplicationStatus } from "../../../features/leave/leaveSlice";
+import Spinner from "../../../components/Spinner";
 
 const EditLeaveStatus = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log(id);
+//   console.log(id);
 
-  const { leaveApplication } = useSelector((state) => state.leave);
+  const { leaveApplication, isError, isLoading } = useSelector((state) => state.leave);
 
   useEffect(() => {
+      if (isError) {
+        alert(isError);
+        }
+        else {
     dispatch(getSpecificLeaveApplication(id));
-  },[dispatch, id]);
+        }
+        return () => {
+            dispatch(reset());
+        }
+  },[dispatch, id, isError]);
 
   const [formData, setFormData] = useState({
     _id: id,
@@ -38,6 +47,10 @@ const EditLeaveStatus = () => {
     dispatch(updateLeaveApplicationStatus(formData));
     navigate("/admin/manageLeaveApplications");
   };
+
+  if(isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <>
