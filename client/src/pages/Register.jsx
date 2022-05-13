@@ -36,7 +36,8 @@ const Register = () => {
     try {
       if (!userJSON) {
         navigate("/register");
-      } else if (userJSON.role === "employee") {
+      } else 
+      if (userJSON.role === "employee") {
         navigate("/dashboard");
         console.log(userJSON.role);
       } else {

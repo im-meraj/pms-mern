@@ -37,8 +37,8 @@ const EmployeeTableComponent = () => {
               {/* <td>{employee.doj}</td> */}
               <td>{employee.address}</td>
               <td>{employee.phone}</td>
-              <td>{employee.department[0].name}</td>
-              <td>{employee.designation[0].name}</td>
+              {/* <td>{employee.department[0].name}</td> */}
+              {/* <td>{employee.designation[0].name}</td> */}
               <td>
                 <button className="btn-secondary btn-edit" style={{ fontSize: '12px' }}><FiEdit/></button>
                 <button className="btn-danger btn-delete" style={{ fontSize: '12px' }}><RiDeleteBin6Line/></button>

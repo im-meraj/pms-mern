@@ -28,14 +28,14 @@ import employeeRoutes from './routes/Employee';
 import departmentRoutes from './routes/Department';
 import designationRoutes from './routes/Designation';
 import leaveApplicationRoutes from './routes/LeaveApplication';
-// import adminLeaveApplicationRoutes from './routes/AdminRoutes/LeaveApplication';
+import gradeRoutes from './routes/Grade';
 
 app.use("/api/auth", authRoutes);
 app.use("/api/employee", employeeRoutes);
 app.use("/api/department", departmentRoutes);
 app.use("/api/designation", designationRoutes);
 app.use("/api/leaveApplicationEmployee", leaveApplicationRoutes);
-// app.use("/api/admin/leaveApplication", adminLeaveApplicationRoutes);
+app.use("/api/grade", gradeRoutes);
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

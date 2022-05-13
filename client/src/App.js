@@ -1,21 +1,40 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
-import Dashboard from './pages/Dashboard';
-import DepartmentsTable from './pages/Department/DepartmentsTable';
-import DepartmentAdd from './pages/Department/DepartmentAdd';
-import EmployeesTable from './pages/Employee/EmployeesTable';
-import EmployeeAdd from './pages/EmployeeAdd';
-import EmployeeDashboard from './pages/EmployeeDashboard';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import DepartmentEdit from './pages/Department/DepartmentEdit';
-import Designation from './pages/Designation/Designation';
-import DesignationTable from './pages/Designation/DesignationTable';
-import DesignationUpdate from './pages/Designation/DesignationUpdate';
-import EditDetails from './pages/Employee/EditDetails';
-import LeaveApplication from './pages/Employee/LeaveApplication';
-import ManageLeave from './pages/Admin/LeaveManagement/ManageLeave';
-import EditLeaveStatus from './pages/Admin/LeaveManagement/EditLeaveStatus';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import Dashboard from "./pages/Dashboard";
+import EmployeeDashboard from "./pages/EmployeeDashboard";
+
+// Department Components
+import DepartmentsTable from "./pages/Department/DepartmentsTable";
+import DepartmentAdd from "./pages/Department/DepartmentAdd";
+import DepartmentEdit from "./pages/Department/DepartmentEdit";
+
+// Admin - Employee Management Components
+import AddNewEmployee from "./pages/Admin/EmployeeManagement/AddNewEmployee";
+import EmployeesTable from "./pages/Employee/EmployeesTable";
+// import EmployeeAdd from "./pages/EmployeeAdd";
+
+
+// Authentication Components
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+
+// Designation Components
+import Designation from "./pages/Designation/Designation";
+import DesignationTable from "./pages/Designation/DesignationTable";
+import DesignationUpdate from "./pages/Designation/DesignationUpdate";
+
+// Grade Components
+import Grade from "./pages/Grade/Grade";
+import GradeTable from "./pages/Grade/GradeTable";
+import GradeUpdate from "./pages/Grade/GradeUpdate";
+
+// Employee Components
+import EditDetails from "./pages/Employee/EditDetails";
+
+// Leave Applications Components
+import LeaveApplication from "./pages/Employee/LeaveApplication";
+import ManageLeave from "./pages/Admin/LeaveManagement/ManageLeave";
+import EditLeaveStatus from "./pages/Admin/LeaveManagement/EditLeaveStatus";
 
 function App() {
   return (
@@ -28,8 +47,13 @@ function App() {
             <Route path="/" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/dashboard" element={<EmployeeDashboard />} />
-            <Route path="/admin/addEmployee" element={<EmployeeAdd />} />
+            {/* <Route path="/admin/addEmployee" element={<EmployeeAdd />} /> */}
+
+            {/* Employee Management Routes */}
+            <Route path="/admin/editEmployee" element={<AddNewEmployee />} />
             <Route path="/admin/showEmployees" element={<EmployeesTable />} />
+
+            {/* Department Routes */}
             <Route path="/admin/addDepartment" element={<DepartmentAdd />} />
             <Route
               path="/admin/showDepartments"
@@ -48,7 +72,14 @@ function App() {
               path="/admin/editDesignation/:id"
               element={<DesignationUpdate />}
             />
+            {/* Grade Routes */}
+            <Route path="/admin/addGrade" element={<Grade />} />
+            <Route path="/admin/showGrades" element={<GradeTable />} />
+            <Route path="/admin/editGrade/:id" element={<GradeUpdate />} />
+
             <Route path="/employee/editDetails/:id" element={<EditDetails />} />
+
+            {/* Leave Management Routes */}
             <Route
               path="/employee/leaveApplication"
               element={<LeaveApplication />}

@@ -31,9 +31,9 @@ const Header = () => {
                         <li className="header__nav-item">
                             <Link to="/" className="header__nav-link"><FaSignInAlt /> Login</Link>
                         </li>
-                        <li className="header__nav-item">
+                        {/* <li className="header__nav-item">
                             <Link to="/register" className="header__nav-link"><FaUser /> Register</Link>
-                        </li>
+                        </li> */}
                     </>)}
                 </ul>
             </div>
