@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 
-const AddNewEmployee = () => {
+const UpdateEmployeeDetails = () => {
     const { isSuccess, isError } = useSelector((state) => state.designation);
 
     const dispatch = useDispatch();
@@ -83,4 +83,4 @@ const AddNewEmployee = () => {
   );
 };
 
-export default AddNewEmployee;
+export default UpdateEmployeeDetails;

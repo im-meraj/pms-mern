@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { FaUser } from "react-icons/fa";
+import { useNavigate, Link } from "react-router-dom";
+import { FaUser, FaArrowLeft } from "react-icons/fa";
 import { register } from "../features/auth/authSlice";
 import Spinner from "../components/Spinner";
 
@@ -33,20 +33,20 @@ const Register = () => {
       return console.log(message);
     }
     
-    try {
-      if (!userJSON) {
-        navigate("/register");
-      } else 
-      if (userJSON.role === "employee") {
-        navigate("/dashboard");
-        console.log(userJSON.role);
-      } else {
-        navigate("/admin");
-        console.log("admin");
-      }
-    } catch (error) {
-      console.log(error);
-    }
+    // try {
+    //   if (!userJSON) {
+    //     navigate("/register");
+    //   } else 
+    //   if (userJSON.role === "employee") {
+    //     navigate("/dashboard");
+    //     console.log(userJSON.role);
+    //   } else {
+    //     navigate("/admin");
+    //     console.log("admin");
+    //   }
+    // } catch (error) {
+    //   console.log(error);
+    // }
 
     // dispatch(reset());
 
@@ -73,6 +73,14 @@ const Register = () => {
       }
       dispatch(register(userData));
     }
+
+    setFormData({
+      personalNo: "",
+    fullname: "",
+    email: "",
+    password: "",
+    password2: "",
+    });
   }
 
   if (isLoading) {
@@ -81,12 +89,32 @@ const Register = () => {
 
   return (
     <>
-      <section className="heading">
+    <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-around",
+        }}
+      >
+        <Link to="/admin">
+          <FaArrowLeft /> Back to Dashboard
+        </Link>
+        <div className="page__heading">
+          <h1>
+            Add New
+            <br />
+            Employee
+          </h1>
+        </div>
+      </div>
+
+      {/* <section className="heading">
         <h1>
           <FaUser /> Register
         </h1>
         <p>Please create an account</p>
-      </section>
+      </section> */}
       <section className="form">
         <form onSubmit={onSubmit}>
 
@@ -115,6 +143,7 @@ const Register = () => {
           </div>
         </form>
       </section>
+      {isSuccess && <h3 style={{color: 'limegreen'}} className="success">Employee was successfully added to Database</h3>}
     </>
   )
 }

@@ -9,7 +9,7 @@ import DepartmentAdd from "./pages/Department/DepartmentAdd";
 import DepartmentEdit from "./pages/Department/DepartmentEdit";
 
 // Admin - Employee Management Components
-import AddNewEmployee from "./pages/Admin/EmployeeManagement/AddNewEmployee";
+import UpdateEmployeeDetails from "./pages/Admin/EmployeeManagement/UpdateEmployeeDetails";
 import EmployeesTable from "./pages/Employee/EmployeesTable";
 // import EmployeeAdd from "./pages/EmployeeAdd";
 
@@ -50,7 +50,7 @@ function App() {
             {/* <Route path="/admin/addEmployee" element={<EmployeeAdd />} /> */}
 
             {/* Employee Management Routes */}
-            <Route path="/admin/editEmployee" element={<AddNewEmployee />} />
+            <Route path="/admin/editEmployee" element={<UpdateEmployeeDetails />} />
             <Route path="/admin/showEmployees" element={<EmployeesTable />} />
 
             {/* Department Routes */}
