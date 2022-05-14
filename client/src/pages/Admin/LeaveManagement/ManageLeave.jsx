@@ -72,7 +72,7 @@ const ManageLeave = () => {
                     <td>{leave.LeaveType}</td>
                     <td>{new Date(leave.FromDate).toLocaleDateString()}</td>
                     <td>{new Date(leave.ToDate).toLocaleDateString()}</td>
-                    <td>{leave.TotalDays}</td>
+                    <td>{leave.TotalDays + 1}</td>
                     <td>{leave.Reason}</td>
                     <td
                       className={`status${

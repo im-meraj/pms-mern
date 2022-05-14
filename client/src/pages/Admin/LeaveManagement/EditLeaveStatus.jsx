@@ -133,7 +133,7 @@ const EditLeaveStatus = () => {
                     id="TotalDays"
                     name="TotalDays"
                     disabled={true}
-                    placeholder={leaveApplication[0].TotalDays}
+                    placeholder={leaveApplication[0].TotalDays + 1}
                   />
                 </div>
 
