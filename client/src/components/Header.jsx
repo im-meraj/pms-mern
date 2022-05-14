@@ -1,4 +1,4 @@
-import { FaSignInAlt, FaSignOutAlt, FaUser } from 'react-icons/fa';
+import { FaSignInAlt, FaSignOutAlt } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout, reset } from '../features/auth/authSlice';
@@ -19,7 +19,7 @@ const Header = () => {
     return (
         <header className="header">
             <div className="header__logo">
-                <Link to="">Employee & Payroll Management System</Link>
+                <Link to={`/${user && user.role === 'admin' ? 'admin' : 'dashboard'}`} >Employee & Payroll Management System</Link>
             </div>
             <div className="header__nav">
                 <ul className="header__nav-list">

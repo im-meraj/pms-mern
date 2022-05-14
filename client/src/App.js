@@ -10,6 +10,7 @@ import DepartmentEdit from "./pages/Department/DepartmentEdit";
 
 // Admin - Employee Management Components
 import UpdateEmployeeDetails from "./pages/Admin/EmployeeManagement/UpdateEmployeeDetails";
+import UpdateEmployee from "./pages/Admin/EmployeeManagement/UpdateEmployee";
 import EmployeesTable from "./pages/Employee/EmployeesTable";
 // import EmployeeAdd from "./pages/EmployeeAdd";
 
@@ -45,12 +46,13 @@ function App() {
           <Routes>
             <Route path="/admin" element={<Dashboard />} />
             <Route path="/" element={<Login />} />
-            <Route path="/register" element={<Register />} />
             <Route path="/dashboard" element={<EmployeeDashboard />} />
             {/* <Route path="/admin/addEmployee" element={<EmployeeAdd />} /> */}
 
             {/* Employee Management Routes */}
-            <Route path="/admin/editEmployee" element={<UpdateEmployeeDetails />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/admin/searchEmployee" element={<UpdateEmployeeDetails />} />
+            <Route path="/admin/editEmployee/:id" element={<UpdateEmployee />} />
             <Route path="/admin/showEmployees" element={<EmployeesTable />} />
 
             {/* Department Routes */}

@@ -1,5 +1,8 @@
 import { UserModel } from '../../models/allModels';
 
+// • bcrypt
+import bcrypt from 'bcrypt';
+
 /**
 Route:      /employee:id
 Method:     GET
@@ -9,7 +12,39 @@ Params:     id
 **/
 const getEmployee = async (req, res) => {
     try {
-        const employee = await UserModel.findById(req.params.id);
+        const employee = await UserModel.findById(req.params.id).populate(["department", "designation"]);
+        if (!employee) {
+            return res.status(404).json({
+                success: false,
+                message: 'Employee not found'
+            });
+        }
+        const { password } = employee;
+        const employeeDetails = {
+            ...employee._doc,
+            password: null
+        };
+        return res.status(200).json(employeeDetails);
+    } catch (error) {
+        return res.status(500).json({
+            message: 'Error getting employee',
+            error
+        });
+    }
+}
+
+/**
+Route:      /employee:personalNo
+Method:     GET
+Access:     Private
+Description: Get a particular employee using personal no
+Params:     personalNo
+**/
+const getEmployeeByPersonalNo = async (req, res) => {
+    try {
+        const personalNo = req.params.pno;
+        console.log(personalNo);
+        const employee = await UserModel.findOne({ personalNo });
         return res.status(200).json(employee);
     } catch (error) {
         return res.status(500).json({
@@ -83,16 +118,30 @@ const updateEmployee = async (req, res) => {
                 message: 'Employee not found',
             });
         }
+
+        const { password } = req.body;
+
+        //hash password
+        const salt = await bcrypt.genSalt(8);
+        const hashedPassword = await bcrypt.hash(password, salt);
+
         const updatedEmployee = await UserModel.findByIdAndUpdate(req.params.id, {
-            $set: req.body
+            $set: {
+                ...req.body,
+                password: hashedPassword
+            }
         }, {
             new: true,
         });
-        return res.status(200).json(updatedEmployee);
+
+        return res.status(200).json({
+            ...updatedEmployee._doc,
+            password: null
+        });
     } catch (error) {
         return res.status(500).json({
             message: 'Error updating employee',
-            error
+            error: error
         });
     }
 
@@ -121,6 +170,7 @@ const deleteEmployee = async (req, res) => {
 export {
     getEmployee,
     getAllEmployees,
+    getEmployeeByPersonalNo,
     setEmployee,
     updateEmployee,
     deleteEmployee

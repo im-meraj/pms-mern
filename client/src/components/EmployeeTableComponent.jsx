@@ -1,10 +1,14 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { getSpecificEmployee } from "../features/employee/employeeSlice";
+
+
 
 const EmployeeTableComponent = () => {
   const employees = useSelector((state) => state.employee.employees);
-  console.log(employees);
+  const dispatch = useDispatch();
   
   return (
     <>
@@ -13,13 +17,11 @@ const EmployeeTableComponent = () => {
       <table className="table" cellPadding={5} cellSpacing={30}>
         <thead>
           <tr>
-            {/* <th>Emp ID</th> */}
-            <th>Title</th>
+            <th>Personal No.</th>
             <th>Name</th>
             <th>Email</th>
-            <th>Date of Birth</th>
-            {/* <th>Date of Joining</th> */}
-            <th>Address</th>
+            {/* <th>Date of Birth</th>
+            <th>Address</th> */}
             <th>Phone No.</th>
             <th>Department</th>
             <th>Designation</th>
@@ -29,22 +31,24 @@ const EmployeeTableComponent = () => {
         <tbody>
           {employees.map((employee, index) => (
             <tr key={index}>
-              {/* <td>{employee.empid}</td> */}
-              <td>{employee.title}</td>
+              <td>{employee.personalNo}</td>
               <td>{employee.fullname}</td>
               <td>{employee.email}</td>
-              <td>{new Date(employee.dob).toLocaleDateString()}</td>
-              {/* <td>{employee.doj}</td> */}
-              <td>{employee.address}</td>
+              {/* <td>{new Date(employee.dob).toLocaleDateString()}</td>
+              <td>{employee.address}</td> */}
               <td>{employee.phone}</td>
-              {/* <td>{employee.department[0].name}</td> */}
-              {/* <td>{employee.designation[0].name}</td> */}
+              <td>{employee.department[0]}</td>
+              <td>{employee.designation[0]}</td>
               <td>
-                <button className="btn-secondary btn-edit" style={{ fontSize: '12px' }}><FiEdit/></button>
+              <Link to={`/admin/editEmployee/${employee._id}`}>
+                <button className="btn-secondary btn-edit" style={{ fontSize: '12px' }} onClick={() => {
+                  dispatch(getSpecificEmployee(employee._id));
+                }}><FiEdit/></button>
+              </Link>
                 <button className="btn-danger btn-delete" style={{ fontSize: '12px' }}><RiDeleteBin6Line/></button>
               </td>
             </tr>
-          )).reverse()}
+          ))}
         </tbody>
       </table>
     ) : (<h3>No Employees</h3>)}

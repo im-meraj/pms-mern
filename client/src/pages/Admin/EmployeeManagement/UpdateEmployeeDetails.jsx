@@ -8,6 +8,8 @@ const UpdateEmployeeDetails = () => {
 
     const dispatch = useDispatch();
 
+    const [personalNo, setPersonalNo] = useState("");
+
     const [formData, setFormData] = useState({
         personalNo: "",
         fullname: "",
@@ -20,10 +22,10 @@ const UpdateEmployeeDetails = () => {
         designation: "",
     });
 
-    const { designationId, name } = formData;
+    const { } = formData;
 
     const onChange = (e) => {
-        setFormData((prevState) => ({
+        setPersonalNo((prevState) => ({
             ...prevState,
             [e.target.name]: e.target.value,
         }));
@@ -35,6 +37,10 @@ const UpdateEmployeeDetails = () => {
         const userData = {
             
         }
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+    }
 
     }
   return (
@@ -52,9 +58,7 @@ const UpdateEmployeeDetails = () => {
         </Link>
         <div className="page__heading">
           <h1>
-            Add new
-            <br />
-            Employee
+            Search <br/>Employee to Update
           </h1>
         </div>
       </div>
@@ -62,23 +66,17 @@ const UpdateEmployeeDetails = () => {
     <section className="form">
               <form onSubmit={onSubmit}>
                   <div className="form-group">
-                      <label htmlFor="designationId">Designation ID</label>
-                      <input type="text" className="form-control" id="designationId" name="designationId" placeholder="Enter designation id" onChange={onChange} />
+                      <label htmlFor="personalNo">Enter Personal Number to get the employee</label>
+                      <input type="text" className="form-control" id="personalNo" name="personalNo" placeholder="Enter Personal Number" onChange={onChange} />
                   </div>
 
                   <div className="form-group">
-                      <label htmlFor="name">Name of the Designation</label>
-                      <input type="text" className="form-control" id="name" name="name" placeholder="Enter designation name" onChange={onChange} />
-                  </div>
-
-
-                  <div className="form-group">
-                      <button type="submit" className="btn btn-block">Submit</button>
+                      <button type="submit" className="btn btn-block">Get Details</button>
                   </div>
               </form>
           </section>
-          {isSuccess && <div className="alert alert-success">Designation added successfully</div>}
-          {isError && <div className="alert alert-danger">Failed to add designation</div>}
+          {isSuccess && <div className="alert alert-success">Fetched Details for {}</div>}
+          {isError && <div className="alert alert-danger">No employee found with this Personal no.</div>}
     </>
   );
 };

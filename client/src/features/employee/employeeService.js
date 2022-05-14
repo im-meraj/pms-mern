@@ -32,9 +32,41 @@ export const getEmployees = async (token) => {
     }
 }
 
+// Get a specific employee
+export const getSpecificEmployee = async (id, token) => {
+    try {
+        const res = await axios.get(API_URL + id, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        return res.data;
+    } catch (error) {
+        const message = (error.res && error.res.data && error.res.data.message) || error.message || error.toString();
+        throw new Error(message);
+    }
+}
+
+// Update specific employee
+export const updateEmployee = async (employeeData, token) => {
+    try {
+        const res = await axios.put(API_URL + employeeData.id, employeeData, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        return res.data;
+    } catch (error) {
+        const message = (error.res && error.res.data && error.res.data.message) || error.message || error.toString();
+        throw new Error(message);
+    }
+}
+
 const employeeService = {
     addEmployee,
-    getEmployees
+    getEmployees,
+    getSpecificEmployee,
+    updateEmployee
 }
 
 export default employeeService;

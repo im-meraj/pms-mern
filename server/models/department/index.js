@@ -9,6 +9,10 @@ const DepartmentSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    employees: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Employee"
+    }]
 }, {
     timestamps: true
 });

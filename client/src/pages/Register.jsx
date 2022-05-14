@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
-import { FaUser, FaArrowLeft } from "react-icons/fa";
+import { FaArrowLeft } from "react-icons/fa";
 import { register } from "../features/auth/authSlice";
+import { getDepartments } from "../features/department/departmentSlice";
+import { getDesignations } from "../features/designation/designationSlice";
 import Spinner from "../components/Spinner";
 
 
@@ -13,20 +15,23 @@ const Register = () => {
     email: "",
     password: "",
     password2: "",
+    dob: new Date(),
+    address: "",
+    phone: "",
+    department: "",
+    designation: "",
   });
 
-  const { fullname, email, password, password2, personalNo } = formData;
-
-  // console.log(formData);
+  const { fullname, email, password, password2, personalNo, dob, address, phone, department, designation } = formData;
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { user, isLoading, isError, isSuccess, message} = useSelector((state) => state.auth);
-  // console.log(user);
+  const { user, isError, isSuccess, message} = useSelector((state) => state.auth);
+  const { departments, isLoading } = useSelector((state) => state.department);
+  const { designations } = useSelector((state) => state.designation);
 
   const userJSON = JSON.parse(localStorage.getItem("user"));
-  // console.log(userJSON);
 
   useEffect(() => {
     if (isError) {
@@ -34,7 +39,7 @@ const Register = () => {
     }
     
     // try {
-    //   if (!userJSON) {
+    //   if (userJSON) {
     //     navigate("/register");
     //   } else 
     //   if (userJSON.role === "employee") {
@@ -52,12 +57,22 @@ const Register = () => {
 
   } , [user, isSuccess, isError, message, navigate, dispatch, userJSON]);
 
+  useEffect(() => {
+    dispatch(getDepartments());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getDesignations());
+  }, [dispatch]);
+
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
     }));
   }
+
+  personalNo.toUpperCase();
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -70,16 +85,26 @@ const Register = () => {
         fullname,
         email,
         password,
+        dob,
+        department,
+        designation,
+        address,
+        phone,
       }
       dispatch(register(userData));
     }
 
     setFormData({
       personalNo: "",
-    fullname: "",
-    email: "",
-    password: "",
-    password2: "",
+      fullname: "",
+      email: "",
+      password: "",
+      password2: "",
+      dob: new Date(),
+      department: "",
+      designation: "",
+      address: "",
+      phone: "",
     });
   }
 
@@ -109,12 +134,6 @@ const Register = () => {
         </div>
       </div>
 
-      {/* <section className="heading">
-        <h1>
-          <FaUser /> Register
-        </h1>
-        <p>Please create an account</p>
-      </section> */}
       <section className="form">
         <form onSubmit={onSubmit}>
 
@@ -136,6 +155,28 @@ const Register = () => {
 
           <div className="form-group">
             <input type="password" className="form-control" id="password2" name="password2" value={password2} placeholder="Re-enter your password" onChange={onChange} />
+          </div>
+
+          <div className="form-group">
+            <select className="form-control" id="department" name="department" onChange={onChange}>
+              <option value="">Select Department</option>
+              {departments.map((department) => (
+                <option key={department._id} value={department._id}>
+                  {department.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="form-group">
+            <select className="form-control" id="designation" name="designation" onChange={onChange}>
+              <option value="">Select Designation</option>
+              {designations.map((designation) => (
+                <option key={designation._id} value={designation._id}>
+                  {designation.name}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="form-group">
