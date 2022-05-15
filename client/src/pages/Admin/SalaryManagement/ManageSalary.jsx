@@ -4,6 +4,7 @@ import { FcCalculator } from 'react-icons/fc';
 import { useDispatch, useSelector } from 'react-redux';
 import { getEmployees, getSpecificEmployee } from '../../../features/employee/employeeSlice';
 import { useEffect } from 'react';
+import { getLeaveApplicationsById } from '../../../features/leave/leaveSlice';
 
 const ManageSalary = () => {
     const employees = useSelector((state) => state.employee.employees);
@@ -47,6 +48,7 @@ const ManageSalary = () => {
                               <th>Phone No.</th>
                               <th>Department</th>
                               <th>Designation</th>
+                              <th>Pay Grade</th>
                               <th>Manage</th>
                           </tr>
                       </thead>
@@ -59,12 +61,14 @@ const ManageSalary = () => {
                                   {/* <td>{new Date(employee.dob).toLocaleDateString()}</td>
               <td>{employee.address}</td> */}
                                   <td>{employee.phone}</td>
-                                  <td>{employee.department[0].name}</td>
-                                  <td>{employee.designation[0].name}</td>
+                                  <td>{employee.department.name}</td>
+                                  <td>{employee.designation.name}</td>
+                                    <td>{employee.grade.gradeName}</td>
                                   <td>
-                                      <Link to={`/admin/editEmployee/${employee._id}`}>
+                                      <Link to={`/admin/calculateSalary/${employee._id}`}>
                                           <button className="btn-payment btn-pay" onClick={() => {
                                               dispatch(getSpecificEmployee(employee._id));
+                                              dispatch(getLeaveApplicationsById(employee._id));
                                           }}><FcCalculator /></button>
                                       </Link>
                                   </td>

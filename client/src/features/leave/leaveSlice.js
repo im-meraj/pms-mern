@@ -69,6 +69,25 @@ export const getAllLeaveApplications = createAsyncThunk(
   }
 );
 
+// Get all leave applications by id
+export const getLeaveApplicationsById = createAsyncThunk(
+  "leaveApplicationEmployee/getLeaveApplicationById",
+  async (id, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user.token;
+      return await leaveService.getLeaveApplicationsById(id, token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 //Get a specific leave application
 export const getSpecificLeaveApplication = createAsyncThunk(
   "leaveApplicationEmployee/getSpecific",
@@ -179,6 +198,19 @@ export const leaveSlice = createSlice({
       state.leaveApplication = action.payload;
     });
     builder.addCase(updateLeaveApplicationStatus.rejected, (state, action) => {
+      state.isError = true;
+      state.isLoading = false;
+      state.message = action.payload;
+    });
+    builder.addCase(getLeaveApplicationsById.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(getLeaveApplicationsById.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+      state.leaveApplications = action.payload;
+    });
+    builder.addCase(getLeaveApplicationsById.rejected, (state, action) => {
       state.isError = true;
       state.isLoading = false;
       state.message = action.payload;

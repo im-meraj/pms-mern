@@ -12,19 +12,15 @@ Params:     id
 **/
 const getEmployee = async (req, res) => {
     try {
-        const employee = await UserModel.findById(req.params.id).populate(["department", "designation"]);
+        const employee = await UserModel.findById(req.params.id).populate(["department", "designation", "grade"]).select("-password");
         if (!employee) {
             return res.status(404).json({
                 success: false,
                 message: 'Employee not found'
             });
         }
-        const { password } = employee;
-        const employeeDetails = {
-            ...employee._doc,
-            password: null
-        };
-        return res.status(200).json(employeeDetails);
+        
+        return res.status(200).json(employee);
     } catch (error) {
         return res.status(500).json({
             message: 'Error getting employee',
@@ -64,7 +60,7 @@ Params:     none
 **/
 const getAllEmployees = async (req, res) => {
     try {
-        const employees = await UserModel.find().populate(["department", "designation"]);
+        const employees = await UserModel.find().populate(["department", "designation", "grade"]).select("-password");
         return res.status(200).json(employees);
     } catch (error) {
         return res.status(500).json({

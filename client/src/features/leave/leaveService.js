@@ -49,6 +49,21 @@ export const getAllLeaveApplications = async (token) => {
     }
 }
 
+// Get all leave applications by id
+export const getLeaveApplicationsById = async (id, token) => {
+    try {
+        const res = await axios.get(API_URL + id, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        return res.data;
+    } catch (error) {
+        const message = (error.res && error.res.data && error.res.data.message) || error.message || error.toString();
+        throw new Error(message);
+    }
+}
+
 // Get a specific leave application
 export const getSpecificLeaveApplication = async (id, token) => {
     try {
@@ -84,7 +99,8 @@ const leaveService = {
     getLeaveApplications,
     getAllLeaveApplications,
     getSpecificLeaveApplication,
-    updateLeaveApplicationStatus
+    updateLeaveApplicationStatus,
+    getLeaveApplicationsById
 }
 
 export default leaveService;

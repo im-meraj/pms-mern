@@ -21,8 +21,9 @@ const UserSchema = new mongoose.Schema({
     },
     address: { type: String },
     phone: { type: Number },
-    department: [{ type: mongoose.Schema.Types.ObjectId, ref: "Department" }],
-    designation: [{ type: mongoose.Schema.Types.ObjectId, ref: "Designation" }],
+    department: { type: mongoose.Schema.Types.ObjectId, ref: "Department" },
+    designation: { type: mongoose.Schema.Types.ObjectId, ref: "Designation" },
+    grade: { type: mongoose.Schema.Types.ObjectId, ref: "Grade" },
     salary: [{ type: mongoose.Schema.Types.ObjectId, ref: "Salary" }],
     leaveApplication: [{ type: mongoose.Schema.Types.ObjectId, ref: "LeaveApplication" }],
     role: {
