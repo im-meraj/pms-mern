@@ -48,7 +48,7 @@ const Dashboard = () => {
 
         <ul className="menu__list">
           <h3 className="menu__heading">Salary</h3>
-          <li className="menu__list-item"><Link to="/admin/showSalary"><FcMoneyTransfer /> Show Salary</Link></li>
+          <li className="menu__list-item"><Link to="/admin/manageSalary"><FcMoneyTransfer /> Manage Salary</Link></li>
         </ul>
 
         <ul className="menu__list">

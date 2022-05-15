@@ -142,6 +142,7 @@ const UpdateEmployee = () => {
 
         <h2 style={{color: 'red', marginTop: '40px'}}>All fields are required</h2>
         
+        <div className="modal__container">
         <section className="form">
           <form onSubmit={onSubmit}>
 
@@ -204,6 +205,7 @@ const UpdateEmployee = () => {
             </div>
           </form>
         </section>
+      </div>
       </div>
     </>
   )

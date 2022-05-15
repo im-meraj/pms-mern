@@ -49,6 +49,8 @@ const Designation = () => {
                   <h1>Add New<br />Designation</h1>
               </div>
           </div>
+
+          <div className="modal__container">
           <section className="form">
               <form onSubmit={onSubmit}>
                   <div className="form-group">
@@ -67,6 +69,7 @@ const Designation = () => {
                   </div>
               </form>
           </section>
+          </div>
           {isSuccess && <div className="alert alert-success">Designation added successfully</div>}
           {isError && <div className="alert alert-danger">Failed to add designation</div>}
     </>

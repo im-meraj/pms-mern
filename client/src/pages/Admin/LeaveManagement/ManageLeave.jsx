@@ -33,7 +33,7 @@ const ManageLeave = () => {
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
-          justifyContent: "space-around",
+          justifyContent: "center",
         }}
       >
         <Link to="/admin">

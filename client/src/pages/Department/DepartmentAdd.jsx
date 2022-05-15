@@ -50,6 +50,8 @@ const DepartmentAdd = () => {
                   <h1>Add New<br />Department</h1>
               </div>
           </div>
+
+          <div className="modal__container">
           <section className="form">
               <form onSubmit={onSubmit}>
                   <div className="form-group">
@@ -68,6 +70,7 @@ const DepartmentAdd = () => {
                   </div>
               </form>
           </section>
+          </div>
 
           <div className="table__container">
               {departments.length > 0 ? (

@@ -61,6 +61,8 @@ const DesignationUpdate = () => {
                   <h1>Update<br />Designation</h1>
               </div>
           </div>
+
+          <div className="modal__container">
           <section className="form">
               <form onSubmit={onSubmit}>
                   <div className="form-group">
@@ -79,6 +81,7 @@ const DesignationUpdate = () => {
                   </div>
               </form>
           </section>
+          </div>
           {isSuccess && <div className="alert alert-success">Designation updated successfully</div> }
           {isError && <div className="alert alert-danger">Designation not updated</div> }
       </>

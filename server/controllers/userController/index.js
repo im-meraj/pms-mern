@@ -64,7 +64,7 @@ Params:     none
 **/
 const getAllEmployees = async (req, res) => {
     try {
-        const employees = await UserModel.find().populate();
+        const employees = await UserModel.find().populate(["department", "designation"]);
         return res.status(200).json(employees);
     } catch (error) {
         return res.status(500).json({

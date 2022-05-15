@@ -134,6 +134,8 @@ const Register = () => {
         </div>
       </div>
 
+      <div className="modal__container">
+
       <section className="form">
         <form onSubmit={onSubmit}>
 
@@ -184,6 +186,7 @@ const Register = () => {
           </div>
         </form>
       </section>
+      </div>
       {isSuccess && <h3 style={{color: 'limegreen'}} className="success">Employee was successfully added to Database</h3>}
     </>
   )

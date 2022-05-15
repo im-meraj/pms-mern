@@ -37,8 +37,8 @@ const EmployeeTableComponent = () => {
               {/* <td>{new Date(employee.dob).toLocaleDateString()}</td>
               <td>{employee.address}</td> */}
               <td>{employee.phone}</td>
-              <td>{employee.department[0]}</td>
-              <td>{employee.designation[0]}</td>
+              <td>{employee.department[0].name}</td>
+              <td>{employee.designation[0].name}</td>
               <td>
               <Link to={`/admin/editEmployee/${employee._id}`}>
                 <button className="btn-secondary btn-edit" style={{ fontSize: '12px' }} onClick={() => {

@@ -59,11 +59,13 @@ const GradeUpdate = () => {
     return (
         <>
             <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around' }}>
-                <Link to="/admin/showDesignations"><FaArrowLeft /> Back to Grades</Link>
+                <Link to="/admin/showGrades"><FaArrowLeft /> Back to Grades</Link>
                 <div className="page__heading" >
                     <h1>Update<br />Pay Grade</h1>
                 </div>
             </div>
+
+            <div className="modal__container">
             <section className="form">
                 <form onSubmit={onSubmit}>
                     <div className="form-group">
@@ -87,6 +89,7 @@ const GradeUpdate = () => {
                     </div>
                 </form>
             </section>
+            </div>
             {isSuccess && <div className="alert alert-success">Pay Grade details updated successfully</div>}
             {isError && <div className="alert alert-danger">Pay Grade details failed to be updated</div>}
         </>

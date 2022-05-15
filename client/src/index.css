@@ -219,6 +219,20 @@ h3 {
   border: 1px solid #88cfe0;
 }
 
+.btn-payment {
+  background: #88e0b4;
+  color: #000;
+  cursor: pointer;
+  border: 1px solid #88cfe0;
+}
+
+.btn-pay {
+  padding: 10px;
+  font-size: 24px;
+  margin: 5px;
+  border-radius: 5px;
+}
+
 .btn-danger {
   background: #f00;
   border: 1px solid #f00;
@@ -326,6 +340,7 @@ td {
 
 th {
   background-color: #009879;
+  /* background-color: #88e0b4; */
   font-size: 16px;
   border: 3px solid black;
 }

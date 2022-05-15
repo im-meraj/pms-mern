@@ -51,6 +51,8 @@ const Grade = () => {
                     <h1>Add New<br />Pay Grade</h1>
                 </div>
             </div>
+
+            <div className="modal__container">
             <section className="form">
                 <form onSubmit={onSubmit}>
                     <div className="form-group">
@@ -73,6 +75,7 @@ const Grade = () => {
                     </div>
                 </form>
             </section>
+            </div>
             {isSuccess && <div className="alert alert-success">Pay Grade added successfully</div>}
             {isError && <div className="alert alert-danger">Failed to add Pay Grade</div>}
         </>
