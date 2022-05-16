@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaArrowLeft } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Spinner from '../../../components/Spinner';
 import { reset } from '../../../features/employee/employeeSlice';
 // import { getLeaveApplications } from '../../../features/leave/leaveSlice';
@@ -9,9 +9,13 @@ import { reset } from '../../../features/employee/employeeSlice';
 const CalculateSalary = () => {
     const months = ['January', 'February', 'March', 'April', 'May', 'June','July', 'August', 'September', 'October', 'November', 'December']
     const [month, setMonth] = useState(null);
-    const [noOfDays, setNoOfDays] = useState(null);
+    // const [daysInMonth, setDaysInMonth] = useState(null);
+    const [attendedDays, setAttendedDays] = useState("");
+    const [lwpDays, setLwpDays] = useState("");
+    const [noOfDays, setNoOfDays] = useState("");
+    const [netSalary, setNetSalary] = useState("");
 
-    // const { id } = useParams();
+    const { id } = useParams();
 
     const { employee, isLoading } = useSelector((state) => state.employee);
     const { leaveApplications } = useSelector((state) => state.leave);
@@ -38,12 +42,20 @@ const CalculateSalary = () => {
     }
 
     const offDays = calculateTotalNoOfDays();
-    console.log(offDays);
 
-    // Calculate total number of attended days
-    const calculateTotalAttendedDays = () => {
-        
+    // Calculate number of lwp days
+    const calculateLwpDays = () => {
+        let totalLwpDays = 0;
+        leaveApplications.forEach(leaveApplication => {
+            if(leaveApplication.Status === 'Approved' && leaveApplication.LeaveType === 'Loss') {
+                totalLwpDays += leaveApplication.TotalDays;
+            }
+        });
+
+        return totalLwpDays;
     }
+
+    const lwp = calculateLwpDays();
 
     // Total working days calculation
     const onChange = (e) => {
@@ -58,15 +70,38 @@ const CalculateSalary = () => {
     }
 
     const daysInMonth = getDaysInMonth(currentMonth, currentYear);
+
+    // Extract object from array of employee
+    const employeeObject = employee.find((employee) => employee._id === id);
+
+    // Calculate net salary
+    const calculateNetSalary = (employee) => {
+        let netSalary = 0;
+        if(employee) {
+            let basicSalary = employee.grade.basic;
+            let da = (basicSalary / 100) * 30;
+            let bd = basicSalary + da;
+            let perDaySalary = Math.round(bd / 27-4);
+            let totalDays = attendedDays+offDays-lwp;
+            console.log(totalDays);
+            netSalary = perDaySalary * totalDays;
+        }
+        return netSalary;
+    }
+
+    const net = calculateNetSalary(employeeObject);
     
     const onSubmit = (e) => {
         e.preventDefault();
         setNoOfDays(() => (daysInMonth-4));
+        setAttendedDays(() => (daysInMonth-4-offDays));
+        setLwpDays(() => (lwp));
+        // setNetSalary(() => (net));
     }
 
-    console.log(leaveApplications);
-
-    // DA calculation
+    const handleClick = () => {
+        setNetSalary(() => (net));
+    }
 
     if (isLoading) {
         return <Spinner />;
@@ -120,6 +155,10 @@ const CalculateSalary = () => {
               <div className="form-group">
                   <button type="submit" className="btn btn-block">Set Month & Year</button>
               </div>
+
+              <div className="form-group">
+                  <button type="button" className="btn btn-block" onClick={handleClick}>Calculate Net Salary</button>
+              </div>
             </form>
         </section>
         </div>
@@ -146,10 +185,11 @@ const CalculateSalary = () => {
                             <td>{emp.fullname}</td>
                             <td>{emp.grade.basic}</td>
                             <td>{(emp.grade.basic / 100) * 30}</td>
-                            <td>{emp.attendedDays}</td>
+                            <td>{attendedDays}</td>
                             <td>{offDays}</td>
-                            <td>{emp.lwp}</td>
+                            <td>{lwpDays}</td>
                             <td>{noOfDays}</td>
+                            <td>{netSalary}</td>
                         </tr>
                     ))}
                 </tbody>
