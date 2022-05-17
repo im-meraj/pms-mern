@@ -6,6 +6,7 @@ import { FaArrowLeft } from 'react-icons/fa'
 import { useEffect, useState } from 'react';
 import { getDepartments } from '../../../features/department/departmentSlice';
 import { getDesignations } from '../../../features/designation/designationSlice';
+import { getAllGrades } from '../../../features/grade/gradeSlice';
 import { getSpecificEmployee, reset, updateEmployee } from '../../../features/employee/employeeSlice';
 import Spinner from '../../../components/Spinner';
 
@@ -13,9 +14,13 @@ const UpdateEmployee = () => {
   const { employee, isLoading } = useSelector((state) => state.employee);
   const { departments } = useSelector((state) => state.department);
   const { designations } = useSelector((state) => state.designation);
+  const { grades } = useSelector((state) => state.grade);
 
   const dispatch = useDispatch();
   const { id } = useParams();
+
+  const employeeObj = employee.find((emp) => emp._id === id);
+  console.log(employeeObj);
 
   useEffect(() => {
     dispatch(getDepartments());
@@ -23,6 +28,10 @@ const UpdateEmployee = () => {
 
   useEffect(() => {
     dispatch(getDesignations());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getAllGrades());
   }, [dispatch]);
 
   useEffect(() => {
@@ -40,9 +49,10 @@ const UpdateEmployee = () => {
     phone: employee.phone,
     department: "",
     designation: "",
+    grade: "",
   });
 
-  const { fullname, email, password, password2, personalNo, department, designation, phone } = formData;
+  const { fullname, email, password, password2, personalNo, department, designation, phone, grade } = formData;
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -65,6 +75,7 @@ const UpdateEmployee = () => {
         department,
         designation,
         phone,
+        grade,
         id,
       }
       dispatch(updateEmployee(userData));
@@ -81,6 +92,7 @@ const UpdateEmployee = () => {
       department: "",
       designation: "",
       phone: employee.phone,
+      grade: "",
     });
   }
 
@@ -121,6 +133,7 @@ const UpdateEmployee = () => {
                     <th>Phone No.</th>
                     <th>Department</th>
                     <th>Designation</th>
+                    <th>Pay Grade</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -130,8 +143,11 @@ const UpdateEmployee = () => {
                       <td>{emp.fullname}</td>
                       <td>{emp.email}</td>
                       <td>{emp.phone}</td>
-                      <td>{emp.department.length > 0 ? emp.department[0].name : emp.department[0]}</td>
-                      <td>{emp.designation.length > 0 ? emp.designation[0].name : emp.designation[0]}</td>
+                      <td>{employeeObj.department.name}</td>
+                      <td>{employeeObj.designation.name}</td>
+                      <td>{employeeObj.grade.gradeName}</td>
+                      {/* <td>{emp.department.length > 0 ? emp.department[0].name : emp.department[0]}</td> */}
+                      {/* <td>{emp.designation.length > 0 ? emp.designation[0].name : emp.designation[0]}</td> */}
                     </tr>
                   ))}
                 </tbody>
@@ -199,6 +215,18 @@ const UpdateEmployee = () => {
                 ))}
               </select>
             </div>
+
+              <div className="form-group">
+                <label htmlFor="grade">Grade</label>
+                <select className="form-control" id="grade" name="grade" onChange={onChange}>
+                  <option value="">Select Grade</option>
+                  {grades.map((grade) => (
+                    <option key={grade._id} value={grade._id}>
+                      {grade.gradeName}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
             <div className="form-group">
               <button type="submit" className="btn btn-block">Update Employee Details</button>

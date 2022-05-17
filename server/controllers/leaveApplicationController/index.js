@@ -85,6 +85,7 @@ const getAllLeaveApplications = async (req, res) => {
               Status: 1,
               TotalDays: 1,
               employee: {
+                personalNo:1,
                 fullname: 1,
                 _id: 1,
               },

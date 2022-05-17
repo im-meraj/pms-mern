@@ -40,6 +40,12 @@ const Grade = () => {
         dispatch(addGrade(gradeData));
         dispatch(getAllGrades());
 
+        setFormData({
+            gradeId: "",
+            gradeName: "",
+            basic: 0,
+        });
+
     }
 
 

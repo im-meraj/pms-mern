@@ -52,7 +52,7 @@ const ManageLeave = () => {
           <table className="table" cellPadding={5} cellSpacing={30}>
             <thead>
               <tr>
-                <th>Employee ID</th>
+                <th>Personal No.</th>
                 <th>Employee Name</th>
                 <th>Leave Type</th>
                 <th>From Date</th>
@@ -67,7 +67,7 @@ const ManageLeave = () => {
               {allLeaveApplications
                 .map((leave, index) => (
                   <tr key={index}>
-                    <td>{leave.employee._id}</td>
+                    <td>{leave.employee.personalNo}</td>
                     <td>{leave.employee.fullname}</td>
                     <td>{leave.LeaveType}</td>
                     <td>{new Date(leave.FromDate).toLocaleDateString()}</td>
