@@ -29,6 +29,7 @@ import departmentRoutes from './routes/Department';
 import designationRoutes from './routes/Designation';
 import leaveApplicationRoutes from './routes/LeaveApplication';
 import gradeRoutes from './routes/Grade';
+import salaryRoutes from './routes/Salary';
 
 app.use("/api/auth", authRoutes);
 app.use("/api/employee", employeeRoutes);
@@ -36,6 +37,7 @@ app.use("/api/department", departmentRoutes);
 app.use("/api/designation", designationRoutes);
 app.use("/api/leaveApplicationEmployee", leaveApplicationRoutes);
 app.use("/api/grade", gradeRoutes);
+app.use("/api/salary", salaryRoutes);
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { FaArrowLeft } from 'react-icons/fa';
-import { FcCalculator } from 'react-icons/fc';
+import { FcCalculator, FcList } from 'react-icons/fc';
 import { useDispatch, useSelector } from 'react-redux';
 import { getEmployees, getSpecificEmployee } from '../../../features/employee/employeeSlice';
 import { useEffect } from 'react';
@@ -13,7 +13,7 @@ const ManageSalary = () => {
 
     useEffect(() => {
         dispatch(getEmployees());
-    }, [dispatch])
+    }, [dispatch]);
     
   return (
     <>
@@ -49,7 +49,8 @@ const ManageSalary = () => {
                               <th>Department</th>
                               <th>Designation</th>
                               <th>Pay Grade</th>
-                              <th>Manage</th>
+                              <th>Calculate</th>
+                              <th>Previously Paid</th>
                           </tr>
                       </thead>
                       <tbody>
@@ -70,6 +71,13 @@ const ManageSalary = () => {
                                               dispatch(getSpecificEmployee(employee._id));
                                               dispatch(getLeaveApplicationsById(employee._id));
                                           }}><FcCalculator /></button>
+                                      </Link>
+                                  </td>
+                                  <td>
+                                      <Link to={`/admin/displaySalary/${employee._id}`}>
+                                          <button className="btn-payment btn-list" onClick={() => {
+                                              
+                                          }}><FcList /></button>
                                       </Link>
                                   </td>
                               </tr>

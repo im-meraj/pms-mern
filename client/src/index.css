@@ -223,7 +223,7 @@ h3 {
   background: #88e0b4;
   color: #000;
   cursor: pointer;
-  border: 1px solid #88cfe0;
+  border: 2px solid #88cfe0;
 }
 
 .btn-pay {
@@ -231,6 +231,17 @@ h3 {
   font-size: 24px;
   margin: 5px;
   border-radius: 5px;
+}
+
+.btn-list {
+  background-color: pink;
+  color: #000;
+  cursor: pointer;
+  border: 2px solid #88cfe0;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 24px;
+  margin: 5px;
 }
 
 .btn-danger {

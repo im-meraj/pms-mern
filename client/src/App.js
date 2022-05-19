@@ -38,6 +38,7 @@ import ManageLeave from "./pages/Admin/LeaveManagement/ManageLeave";
 import EditLeaveStatus from "./pages/Admin/LeaveManagement/EditLeaveStatus";
 import ManageSalary from "./pages/Admin/SalaryManagement/ManageSalary";
 import CalculateSalary from "./pages/Admin/SalaryManagement/CalculateSalary";
+import DisplaySalary from "./pages/Admin/SalaryManagement/DisplaySalary";
 
 function App() {
   return (
@@ -100,6 +101,7 @@ function App() {
             {/* Salary Management Routes */}
             <Route path="/admin/manageSalary" element={<ManageSalary />} />
             <Route path="/admin/calculateSalary/:id" element={<CalculateSalary />} />
+            <Route path="/admin/displaySalary/:id" element={<DisplaySalary />} />
           </Routes>
         </div>
       </Router>

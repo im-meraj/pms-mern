@@ -5,6 +5,7 @@ import departmentReducer from "../features/department/departmentSlice";
 import designationReducer from "../features/designation/designationSlice";
 import leaveReducer from "../features/leave/leaveSlice";
 import gradeReducer from "../features/grade/gradeSlice";
+import salaryReducer from "../features/salary/salarySlice";
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     department: departmentReducer,
     designation: designationReducer,
     leave: leaveReducer,
-    grade: gradeReducer
+    grade: gradeReducer,
+    salary: salaryReducer,
   },
 });
