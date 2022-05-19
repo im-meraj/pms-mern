@@ -10,8 +10,10 @@ Params:     id
 **/
 const getAllSalariesByMonthAndYear = async (req, res) => {
     try {
+        const { id } = req.params;
+        console.log(id);
         const { month, year } = req.query;
-        const salaries = await SalaryModel.find({ month, year });
+        const salaries = await SalaryModel.find({ employeeId: id, month, year });
         return res.status(200).json(salaries);
     } catch (err) {
         return res.status(500).json({
@@ -51,16 +53,25 @@ Params:     id
 **/
 const addSalary = async (req, res) => {
     try {
-        const { employeeId, gradeId, gradeName, basicSalary, da, attendedDays, offDays, lwpDays, netSalary, month, year, personalNo } = req.body;
-        const salary = new SalaryModel({ employeeId, gradeId, gradeName, basicSalary, da, attendedDays, offDays, lwpDays, netSalary, month, year, personalNo});
+        const salaries = await SalaryModel.find({ tid: req.body.tid });
+        if (salaries.length > 0) {
+            return res.status(400).json({
+                message: "Salary already exists for this employee."
+            });
+        }
+        
+        const { employeeId, gradeId, gradeName, basicSalary, da, attendedDays, offDays, lwpDays, netSalary, month, year, personalNo, tid } = req.body;
+        const salary = new SalaryModel({ employeeId, gradeId, gradeName, basicSalary, da, attendedDays, offDays, lwpDays, netSalary, month, year, personalNo, tid});
         const newSalary = await salary.save();
         return res.status(200).json(newSalary);
+
     } catch (err) {
         return res.status(500).json({
             error: err,
             message: "Error while adding salary."
         });
     }
+
 }
 
 

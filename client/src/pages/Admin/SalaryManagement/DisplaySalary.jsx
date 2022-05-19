@@ -113,8 +113,8 @@ const DisplaySalary = () => {
                                 <td>{salary.year}</td>
                                 <td>{salary.netSalary}</td>
                                 <td>
-                                    <Link to={`/admin/manageSalary/salaryDetails/${salary.id}`}>
-                                        View Details
+                                    <Link to={`/admin/manageSalary/salaryDetails/${salary._id}`} >
+                                        <button className="btn btn-primary">View</button>
                                     </Link>
                                 </td>
                             </tr>

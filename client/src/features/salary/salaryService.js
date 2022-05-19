@@ -4,8 +4,9 @@ const API_URL = "/api/salary/";
 
 // Add new salary details to the database
 export const addSalary = async (salaryData, token) => {
+    const id = salaryData.employeeId;
     try {
-        const res = await axios.post(API_URL, salaryData, {
+        const res = await axios.post(API_URL + id, salaryData, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -19,6 +20,7 @@ export const addSalary = async (salaryData, token) => {
 
 // Get all salaries by month and year for the selected employee
 export const getAllSalariesByMonthAndYear = async (id, params, token) => {
+    console.log(id);
     console.log(params);
     try {
         const res = await axios.get(`${API_URL}${id}`, {

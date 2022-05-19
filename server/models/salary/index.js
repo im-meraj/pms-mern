@@ -11,7 +11,8 @@ const SalarySchema = new mongoose.Schema({
     netSalary: { type: Number, required: true },
     month: { type: Number },
     year: { type: Number },
-    employee: { type: mongoose.Schema.Types.ObjectId, ref: "Employee" },
+    tid: { type: String, required: true, unique: true },
+    employeeId: { type: mongoose.Schema.Types.ObjectId, ref: "Employee" },
     personalNo: { type: String, required: true },
 }, {
     timestamps: true

@@ -4,6 +4,7 @@ import { FaArrowLeft } from 'react-icons/fa';
 import { Link, useParams } from 'react-router-dom';
 import Spinner from '../../../components/Spinner';
 import { reset } from '../../../features/employee/employeeSlice';
+import { addSalary, resetSalary } from '../../../features/salary/salarySlice';
 // import { getLeaveApplications } from '../../../features/leave/leaveSlice';
 
 const CalculateSalary = () => {
@@ -18,6 +19,7 @@ const CalculateSalary = () => {
 
     const { employee, isLoading } = useSelector((state) => state.employee);
     const { leaveApplications } = useSelector((state) => state.leave);
+    const { isError } = useSelector((state) => state.salary);
 
     const dispatch = useDispatch();
 
@@ -25,6 +27,7 @@ const CalculateSalary = () => {
 
         return () => {
         dispatch(reset());
+        dispatch(resetSalary());
         };
 
     }, [dispatch]);
@@ -64,7 +67,7 @@ const CalculateSalary = () => {
     const currentYear = new Date().getFullYear();
     const currentMonth = new Date().getMonth();
 
-    console.log(currentMonth);
+    // console.log(currentMonth);
 
     const getDaysInMonth = (month, year) => {
         return new Date(year, month + 1, 0).getDate();
@@ -123,11 +126,13 @@ const CalculateSalary = () => {
             netSalary: netSalary,
             month: currentMonth,
             year: currentYear,
+            tid: `Sal-${employeeObject.personalNo}-${currentYear}-${currentMonth}`,
             gradeId: employeeObject.grade._id,
             gradeName: employeeObject.grade.gradeName,
             personalNo: employeeObject.personalNo,
         }
         console.log(salaryData);
+        dispatch(addSalary(salaryData));
     }
 
     if (isLoading) {
@@ -193,6 +198,7 @@ const CalculateSalary = () => {
             </form>
         </section>
         </div>
+        {isError && <h3 className="error">Salary already exists for this month and year </h3>}
 
         <div className="table__container">
             <table className="table" cellPadding={5} cellSpacing={30}>

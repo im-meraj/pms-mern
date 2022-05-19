@@ -50,7 +50,7 @@ export const salarySlice = createSlice({
     name: "salary",
     initialState,
     reducers: {
-        reset: (state) => initialState,
+        resetSalary: (state) => initialState,
     },
     extraReducers: (builder) => {
         builder.addCase(addSalary.pending, (state, action) => {
@@ -83,5 +83,5 @@ export const salarySlice = createSlice({
     },
 });
 
-export const { reset } = salarySlice.actions;
+export const { resetSalary } = salarySlice.actions;
 export default salarySlice.reducer;
