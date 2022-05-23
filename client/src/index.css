@@ -410,3 +410,57 @@ td {
   /* box-shadow: 0px 0px 18px rgba(0, 0, 0, 0.75); */
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
 }
+
+.payslip__container {
+  max-width: 800px;
+    width: 100%;
+    /* position: fixed; */
+    margin: 40px auto;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    z-index: 5000;
+    /* box-shadow: 0px 0px 18px rgba(0, 0, 0, 0.75); */
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+}
+
+.payslip__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.payslip__date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+  background-color: #eee;
+}
+
+.payslip__date h2 {
+  margin-bottom: 0;
+  font-size: 20px;
+}
+
+.payslip__body__top {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.payslip__body__left__employee {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.payslip__body__left__employee h3 {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+.payslip__body__right__employee h3 {
+  font-size: 16px;
+  margin: 10px 0;
+}

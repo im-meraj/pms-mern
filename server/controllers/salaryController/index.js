@@ -11,7 +11,7 @@ Params:     id
 const getAllSalariesByMonthAndYear = async (req, res) => {
     try {
         const { id } = req.params;
-        console.log(id);
+        // console.log(id);
         const { month, year } = req.query;
         const salaries = await SalaryModel.find({ employeeId: id, month, year });
         return res.status(200).json(salaries);

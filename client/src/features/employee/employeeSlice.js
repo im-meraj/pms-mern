@@ -110,7 +110,8 @@ export const employeeSlice = createSlice({
         builder.addCase(getSpecificEmployee.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
-            state.employee.push(action.payload);
+            // state.employee.push(action.payload);
+            state.employee = action.payload;
         });
         builder.addCase(getSpecificEmployee.rejected, (state, action) => {
             state.isError = true;
