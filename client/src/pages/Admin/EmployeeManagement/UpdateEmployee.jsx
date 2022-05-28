@@ -79,7 +79,7 @@ const UpdateEmployee = () => {
         id,
       }
       dispatch(updateEmployee(userData));
-      dispatch(reset());
+      // dispatch(reset());
       dispatch(getSpecificEmployee(id));
     }
 
@@ -145,7 +145,7 @@ const UpdateEmployee = () => {
                       <td>{emp.phone}</td>
                       <td>{employeeObj.department.name}</td>
                       <td>{employeeObj.designation.name}</td>
-                      <td>{employeeObj.grade.gradeName}</td>
+                      <td>{employeeObj.grade && employeeObj.grade.gradeName}</td>
                       {/* <td>{emp.department.length > 0 ? emp.department[0].name : emp.department[0]}</td> */}
                       {/* <td>{emp.designation.length > 0 ? emp.designation[0].name : emp.designation[0]}</td> */}
                     </tr>
@@ -156,7 +156,8 @@ const UpdateEmployee = () => {
           }
         </div>
 
-        <h2 style={{color: 'red', marginTop: '40px'}}>All fields are required</h2>
+        <h2 style={{color: 'red', marginTop: '40px'}}>Refilling of all fields are required</h2>
+        <span className="smText">(Refer to above table)</span>
         
         <div className="modal__container">
         <section className="form">

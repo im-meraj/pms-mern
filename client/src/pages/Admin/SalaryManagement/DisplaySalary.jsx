@@ -3,6 +3,7 @@ import { FaArrowLeft } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllSalariesByMonthAndYear } from '../../../features/salary/salarySlice';
 import { useState } from 'react';
+import { getSpecificEmployee } from '../../../features/employee/employeeSlice';
 
 const DisplaySalary = () => {
     const { salaries } = useSelector((state) => state.salary);
@@ -32,6 +33,10 @@ const DisplaySalary = () => {
             year,
         }
         dispatch(getAllSalariesByMonthAndYear({id, params}));
+    }
+
+    const onClick = () => {
+        dispatch(getSpecificEmployee(id));
     }
     
     return (
@@ -114,7 +119,7 @@ const DisplaySalary = () => {
                                 <td>{salary.netSalary}</td>
                                 <td>
                                     <Link to={`/admin/manageSalary/salaryDetails/${salary._id}`} >
-                                        <button className="btn btn-primary">View</button>
+                                        <button className="btn btn-primary" onClick={onClick}>View</button>
                                     </Link>
                                 </td>
                             </tr>

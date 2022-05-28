@@ -64,7 +64,7 @@ const ManageSalary = () => {
                                   <td>{employee.phone}</td>
                                   <td>{employee.department.name}</td>
                                   <td>{employee.designation.name}</td>
-                                    <td>{employee.grade.gradeName}</td>
+                                  <td>{employee.grade && employee.grade.gradeName}</td>
                                   <td>
                                       <Link to={`/admin/calculateSalary/${employee._id}`}>
                                           <button className="btn-payment btn-pay" onClick={() => {

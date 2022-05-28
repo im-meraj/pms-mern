@@ -20,8 +20,8 @@ const EmployeeTableComponent = () => {
             <th>Personal No.</th>
             <th>Name</th>
             <th>Email</th>
-            {/* <th>Date of Birth</th>
-            <th>Address</th> */}
+            {/* <th>Date of Birth</th> */}
+            <th>Address</th>
             <th>Phone No.</th>
             <th>Department</th>
             <th>Designation</th>
@@ -34,9 +34,9 @@ const EmployeeTableComponent = () => {
               <td>{employee.personalNo}</td>
               <td>{employee.fullname}</td>
               <td>{employee.email}</td>
-              {/* <td>{new Date(employee.dob).toLocaleDateString()}</td>
-              <td>{employee.address}</td> */}
-              <td>{employee.phone}</td>
+              {/* <td>{new Date(employee.dob).toLocaleDateString()}</td> */}
+              <td>{employee.address}</td>
+              <td>{employee.phone === null ? 'Unavailable' : employee.phone}</td>
               <td>{employee.department.name}</td>
               <td>{employee.designation.name}</td>
               <td>

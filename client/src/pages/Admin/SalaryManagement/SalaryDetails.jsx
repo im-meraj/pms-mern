@@ -9,7 +9,7 @@ const SalaryDetails = () => {
     const { id } = useParams();
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     const { salaries } = useSelector((state) => state.salary);
-    const { employee } = useSelector((state) => state.employee);
+    const { employee, isLoading } = useSelector((state) => state.employee);
 
     const dispatch = useDispatch();
 
@@ -25,6 +25,10 @@ const SalaryDetails = () => {
             },
         })
 
+    }
+
+    if (isLoading) {
+        return <h1>Loading...</h1>
     }
 
   return (
@@ -84,8 +88,8 @@ const SalaryDetails = () => {
               <div className="payslip__body">
                     <div className="payslip__body__top">
                         <div className="payslip__body__left__employee">
-                            <h3>{`Personal No. : ${employee.personalNo}`}</h3>
-                            <h3>{`Emp. Name : ${employee.fullname}`}</h3>
+                            <h3>{`Personal No. : ${employee && employee[0].personalNo}`}</h3>
+                          <h3>{`Emp. Name : ${employee && employee[0].fullname}`}</h3>
                         </div>
                         <div className="payslip__body__right__employee">
                             <h3>{`Paid Days: ${salaries[0].attendedDays + salaries[0].offDays}`}</h3>
