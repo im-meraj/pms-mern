@@ -125,7 +125,7 @@ h3 {
   align-items: center;
   justify-content: center;
   width: 70%;
-  padding-left: 16%;
+  /* padding-left: 16%; */
 }
 
 .menu__heading {
