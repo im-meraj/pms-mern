@@ -60,10 +60,10 @@ const ManageSalary = () => {
                                   <td>{employee.fullname}</td>
                                   <td>{employee.email}</td>
                                   {/* <td>{new Date(employee.dob).toLocaleDateString()}</td>
-              <td>{employee.address}</td> */}
+                                    <td>{employee.address}</td> */}
                                   <td>{employee.phone}</td>
-                                  <td>{employee.department.name}</td>
-                                  <td>{employee.designation.name}</td>
+                                  <td>{employee.department && employee.department.name}</td>
+                                  <td>{employee.designation && employee.designation.name}</td>
                                   <td>{employee.grade && employee.grade.gradeName}</td>
                                   <td>
                                       <Link to={`/admin/calculateSalary/${employee._id}`}>

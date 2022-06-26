@@ -464,3 +464,57 @@ td {
   font-size: 16px;
   margin: 10px 0;
 }
+
+.payslip__body__bottom {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.login__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.left__bg {
+  /* background: url("https://products.ls.graphics/paaatterns/images/015.png"); */
+  /* background-image: url("https://products.ls.graphics/paaatterns/images/018-p-1080.png"); */
+  background-image: url("https://res.cloudinary.com/immeraj/image/upload/v1655391387/pms/undraw_Work_time_re_hdyv_t83teb.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 600px;
+  height: 500px;
+}
+
+.login__form {
+  max-width: 600px;
+  width: 500px;
+  margin: 40px auto;
+  padding: 100px;
+  background-color: #fff;
+  border-radius: 5px;
+  /* padding: 20px; */
+  z-index: 5000;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+}
+
+.alert {
+  font-size: 16px;
+}
+
+.alert--success {
+  background-color: #009879;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.alert--error {
+  background-color: red;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+}

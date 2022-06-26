@@ -40,6 +40,7 @@ import ManageSalary from "./pages/Admin/SalaryManagement/ManageSalary";
 import CalculateSalary from "./pages/Admin/SalaryManagement/CalculateSalary";
 import DisplaySalary from "./pages/Admin/SalaryManagement/DisplaySalary";
 import SalaryDetails from "./pages/Admin/SalaryManagement/SalaryDetails";
+import ShowDetails from "./pages/Employee/ShowDetails";
 
 function App() {
   return (
@@ -69,6 +70,8 @@ function App() {
               path="/admin/editDepartment/:id"
               element={<DepartmentEdit />}
             />
+
+            {/* Designation Routes */}
             <Route path="/admin/addDesignation" element={<Designation />} />
             <Route
               path="/admin/showDesignations"
@@ -78,11 +81,14 @@ function App() {
               path="/admin/editDesignation/:id"
               element={<DesignationUpdate />}
             />
+            
             {/* Grade Routes */}
             <Route path="/admin/addGrade" element={<Grade />} />
             <Route path="/admin/showGrades" element={<GradeTable />} />
             <Route path="/admin/editGrade/:id" element={<GradeUpdate />} />
 
+            {/* Employee Routes */}
+            <Route path="/employee/showDetails/:id" element={<ShowDetails />} />
             <Route path="/employee/editDetails/:id" element={<EditDetails />} />
 
             {/* Leave Management Routes */}

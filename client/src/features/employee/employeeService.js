@@ -62,11 +62,27 @@ export const updateEmployee = async (employeeData, token) => {
     }
 }
 
+// Delete specific employee
+export const deleteEmployee = async (id, token) => {
+    try {
+        const res = await axios.delete(API_URL + id, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        return res.data;
+    } catch (error) {
+        const message = (error.res && error.res.data && error.res.data.message) || error.message || error.toString();
+        throw new Error(message);
+    }
+}
+
 const employeeService = {
     addEmployee,
     getEmployees,
     getSpecificEmployee,
-    updateEmployee
+    updateEmployee,
+    deleteEmployee
 }
 
 export default employeeService;

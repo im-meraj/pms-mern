@@ -29,7 +29,7 @@ const EmployeeDashboard = () => {
         <ul className="menu__list">
           <h3 className="menu__heading">Manage</h3>
           <div className="menu__list-items">
-          <li className="menu__list-item"><Link to={`/employee/editDetails/${user._id}`}><FcViewDetails/> Personal Details</Link></li>
+          <li className="menu__list-item"><Link to={`/employee/showDetails/${user._id}`}><FcViewDetails/> Personal Details</Link></li>
           <li className="menu__list-item"><Link to={`/employee/leaveApplication/`}><FcLeave/> Leave Application</Link></li>
           </div>
         </ul>

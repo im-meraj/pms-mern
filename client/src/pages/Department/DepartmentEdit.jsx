@@ -1,12 +1,19 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaArrowLeft } from 'react-icons/fa'
-import { useDispatch } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useParams } from 'react-router-dom'
+import { reset, updateDepartment } from '../../features/department/departmentSlice';
 
 const DepartmentEdit = () => {
-    const location = useLocation();
-    const path = location.pathname.split('/')[2];
-    console.log(path);
+    const { id } = useParams();
+
+    const { isSuccess, isError } = useSelector((state) => state.department);
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(reset());
+    }, [dispatch]);
 
     const [formData, setFormData] = useState({
         deptId: "",
@@ -14,8 +21,6 @@ const DepartmentEdit = () => {
     });
 
     const { deptId, name } = formData;
-
-    const dispatch = useDispatch();
 
     const onChange = (e) => {
         setFormData((prevState) => ({
@@ -30,20 +35,29 @@ const DepartmentEdit = () => {
         const deptData = {
             deptId,
             name,
+            id,
         }
         console.log(deptData);
 
-        dispatch();
+        dispatch(updateDepartment(deptData));
+
+        setFormData({
+            deptId: "",
+            name: "",
+        });
 
     }
+
   return (
     <>
           <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around' }}>
-              <Link to="/admin"><FaArrowLeft /> Back to Dashboard</Link>
+              <Link to="/admin/showDepartments"><FaArrowLeft /> Back to Dashboard</Link>
               <div className="page__heading" >
                   <h1>Edit<br />Department Details</h1>
               </div>
           </div>
+
+        <div className="modal__container">
           <section className="form">
               <form onSubmit={onSubmit}>
                   <div className="form-group">
@@ -62,6 +76,9 @@ const DepartmentEdit = () => {
                   </div>
               </form>
           </section>
+        </div>
+          {isSuccess && <div className="alert alert-success">Department updated successfully</div>}
+          {isError && <div className="alert alert-danger">Department not updated</div>}
     </>
   )
 }

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
-import { register } from "../features/auth/authSlice";
+import { register, reset } from "../features/auth/authSlice";
 import { getDepartments } from "../features/department/departmentSlice";
 import { getDesignations } from "../features/designation/designationSlice";
 import { getAllGrades } from "../features/grade/gradeSlice";
@@ -71,6 +71,10 @@ const Register = () => {
   useEffect(() => {
     dispatch(getAllGrades());
   }, [dispatch]);
+
+  useEffect(() => {
+    return () => dispatch(reset());
+  },[dispatch])
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -143,32 +147,43 @@ const Register = () => {
         </div>
       </div>
 
+      
+
       <div className="modal__container">
+
+        {isSuccess && <h3 style={{ color: 'limegreen' }} className="success">Employee was successfully added to Database</h3>}
+        {isError && <h3 style={{ color: 'red' }} className="error">You're required to fill out all the fields</h3>}
 
         <section className="form">
           <form onSubmit={onSubmit}>
 
             <div className="form-group">
+              <label htmlFor="personalNo">Personal No</label>
               <input type="text" className="form-control" id="personalNo" name="personalNo" value={personalNo} placeholder="Enter employee personal no." onChange={onChange} />
             </div>
 
             <div className="form-group">
+              <label htmlFor="fullname">Name</label>
               <input type="text" className="form-control" id="fullname" name="fullname" value={fullname} placeholder="Enter your name" onChange={onChange} />
             </div>
 
             <div className="form-group">
+              <label htmlFor="email">Email</label>
               <input type="email" className="form-control" id="email" name="email" value={email} placeholder="Enter your email" onChange={onChange} />
             </div>
 
             <div className="form-group">
+              <label htmlFor="password">Password</label>
               <input type="password" className="form-control" id="password" name="password" value={password} placeholder="Enter your password" onChange={onChange} />
             </div>
 
             <div className="form-group">
+              <label htmlFor="password2">Confirm Password</label>
               <input type="password" className="form-control" id="password2" name="password2" value={password2} placeholder="Re-enter your password" onChange={onChange} />
             </div>
 
             <div className="form-group">
+              <label htmlFor="department">Department</label>
               <select className="form-control" id="department" name="department" onChange={onChange}>
                 <option value="">Select Department</option>
                 {departments.map((department) => (
@@ -180,6 +195,7 @@ const Register = () => {
             </div>
 
             <div className="form-group">
+              <label htmlFor="designation">Designation</label>
               <select className="form-control" id="designation" name="designation" onChange={onChange}>
                 <option value="">Select Designation</option>
                 {designations.map((designation) => (
@@ -208,8 +224,8 @@ const Register = () => {
           </form>
         </section>
       </div>
-      {isSuccess && <h3 style={{ color: 'limegreen' }} className="success">Employee was successfully added to Database</h3>}
-      {isError && <h3 style={{ color: 'red' }} className="error">You're required to fill out all the fields</h3>}
+      {/* {isSuccess && <h3 style={{ color: 'limegreen' }} className="success">Employee was successfully added to Database</h3>}
+      {isError && <h3 style={{ color: 'red' }} className="error">You're required to fill out all the fields</h3>} */}
     </>
   )
 }

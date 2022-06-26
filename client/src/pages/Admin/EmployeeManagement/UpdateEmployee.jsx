@@ -47,12 +47,13 @@ const UpdateEmployee = () => {
     password: employee.password,
     password2: employee.password,
     phone: employee.phone,
+    address: employee.address,
     department: "",
     designation: "",
     grade: "",
   });
 
-  const { fullname, email, password, password2, personalNo, department, designation, phone, grade } = formData;
+  const { fullname, email, password, password2, personalNo, department, designation, phone, grade, address } = formData;
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -77,6 +78,7 @@ const UpdateEmployee = () => {
         phone,
         grade,
         id,
+        address,
       }
       dispatch(updateEmployee(userData));
       // dispatch(reset());
@@ -93,6 +95,7 @@ const UpdateEmployee = () => {
       designation: "",
       phone: employee.phone,
       grade: "",
+      address: employee.address,
     });
   }
 
@@ -131,25 +134,29 @@ const UpdateEmployee = () => {
                     <th>Name of the employee</th>
                     <th>Email</th>
                     <th>Phone No.</th>
+                    <th>Address</th>
                     <th>Department</th>
                     <th>Designation</th>
                     <th>Pay Grade</th>
                     </tr>
                 </thead>
                 <tbody>
+
                   {employee.map((emp, index) => (
                     <tr key={index}>
                       <td>{emp.personalNo}</td>
                       <td>{emp.fullname}</td>
                       <td>{emp.email}</td>
                       <td>{emp.phone}</td>
-                      <td>{employeeObj.department.name}</td>
-                      <td>{employeeObj.designation.name}</td>
+                      <td>{emp.address}</td>
+                      <td>{employeeObj.department && employeeObj.department.name}</td>
+                      <td>{employeeObj.designation && employeeObj.designation.name}</td>
                       <td>{employeeObj.grade && employeeObj.grade.gradeName}</td>
                       {/* <td>{emp.department.length > 0 ? emp.department[0].name : emp.department[0]}</td> */}
                       {/* <td>{emp.designation.length > 0 ? emp.designation[0].name : emp.designation[0]}</td> */}
                     </tr>
                   ))}
+
                 </tbody>
               </table>
             ) : (<h3>No Employee Data</h3>)
@@ -182,6 +189,11 @@ const UpdateEmployee = () => {
               <label htmlFor="phone">Phone</label>
               <input type="tel" className="form-control" id="phone" name="phone" value={phone} placeholder="Enter new employee phone no." onChange={onChange} />
             </div>
+
+              <div className="form-group">
+                <label htmlFor="address">Address</label>
+                <input type="text" className="form-control" id="address" name="address" value={address} placeholder="Enter new employee address" onChange={onChange} />
+              </div>
 
             <div className="form-group">
               <label htmlFor="password">Password</label>

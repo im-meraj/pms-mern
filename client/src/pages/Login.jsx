@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { FaSignInAlt } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -6,6 +8,8 @@ import { login, reset } from "../features/auth/authSlice";
 import Spinner from "../components/Spinner";
 
 const Login = () => {
+  const errRef = useRef();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -46,6 +50,7 @@ const Login = () => {
 
   }, [user, isSuccess, isError, message, navigate, dispatch, userJSON]);
 
+
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
@@ -65,34 +70,62 @@ const Login = () => {
     dispatch(login(userData));
   }
 
+  // const customId = "warning";
+
+  // if (isError) {
+  //   toast.error('⛔ Login Failed! Try Again!!', {
+  //     toastId: customId,
+  //     position: "bottom-right",
+  //     autoClose: 5000,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     pauseOnHover: true,
+  //     draggable: true,
+  //     progress: undefined,
+  //   });
+  // }
+
   if (isLoading) {
     return <Spinner />;
   }
 
   return (
     <>
+      <ToastContainer />
+      
       <section className="heading">
         <h1>
           <FaSignInAlt /> Login
         </h1>
         <p>Login to your account</p>
       </section>
-      <section className="form">
+      <div className="login__container">
+      <div className="left__bg">
+
+      </div>
+      
+      <section className="form login__form">
         <form onSubmit={onSubmit}>
           
           <div className="form-group">
-            <input type="text" className="form-control" id="email" name="email" value={email} placeholder="Enter your email" onChange={onChange} />
+            <label htmlFor="email">Email</label>
+            <input type="text" className="form-control" id="email" name="email" value={email} placeholder="Enter your email" onChange={onChange} required/>
           </div>
 
           <div className="form-group">
-            <input type="password" className="form-control" id="password" name="password" value={password} placeholder="Enter your password" onChange={onChange} />
+            <label htmlFor="password">Password</label>
+            <input type="password" className="form-control" id="password" name="password" value={password} placeholder="Enter your password" onChange={onChange} required/>
           </div>
          
           <div className="form-group">
-            <button type="submit" className="btn btn-block">Login</button>
+            <button type="submit" className="btn btn-block" >Login</button>
           </div>
         </form>
+
+        <p ref={errRef} className={message ? "alert alert--error" : ""}>{message}</p> 
       </section>
+      </div>
+      
     </>
   )
 }
