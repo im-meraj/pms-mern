@@ -120,6 +120,14 @@ h3 {
   padding-left: 16%;
 }
 
+.page__heading-c {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+  padding-left: 16%;
+}
+
 .menu__heading {
   font-size: 1.5rem;
   font-weight: 700;
@@ -517,4 +525,88 @@ td {
   color: #fff;
   padding: 10px;
   border-radius: 5px;
+}
+
+.lau__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.la-img{
+  width: 50%;
+}
+
+.la-img img {
+  width: 100%;
+}
+
+.showEmp__container{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.se-img{
+  width: 40%;
+}
+
+.se-img img {
+  width: 100%;
+}
+
+.gt__container{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.page__heading-gt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+  padding-left: 4%;
+}
+
+.page__heading-ga {
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  width: 70%;
+  padding-left: 19%;
+}
+
+.page__heading-ddt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+  padding-left: 3%;
+}
+
+.page__heading-dest {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+  padding-left: 6%;
+}
+
+.page__heading-desa {
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  width: 70%;
+  padding-left: 18%;
+}
+
+.gt-img{
+  width: 40%;
+}
+
+.gt-img img {
+  width: 100%;
 }

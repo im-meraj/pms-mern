@@ -19,7 +19,10 @@ const Dashboard = () => {
 
   return (
     <div className="container">
-      <header><h1>Welcome {user ? user.fullname : ""}<br />Admin Dashboard</h1></header>
+      <header>
+      <h1 style={{ borderBottom: '2px solid #555', paddingBottom: '10px' }}>Welcome {user ? user.fullname : ""}</h1>
+      <h2>Admin Dashboard</h2>
+      </header>
       <div className="dashboard__container">
         <ul className="menu__list">
           <h3 className="menu__heading">Employee</h3>

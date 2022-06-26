@@ -36,11 +36,20 @@ const GradeTable = () => {
             <div className="container">
                 <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                     <Link to="/admin"><FaArrowLeft /> Back to Dashboard</Link>
-                    <div className="page__heading">
+                    <div className="page__heading-gt">
                         <h1>Pay Grade<br />Details Table</h1>
                     </div>
                 </div>
+
+                <div className="gt__container">
+
+                <div className="gt-img">
+                        <img src="https://res.cloudinary.com/immeraj/image/upload/v1656279036/pms/undraw_Dashboard_re_3b76_poaekf.png" alt="" />
+                </div>
+
                 <GradeTableComponent />
+                </div>
+
             </div>
         </>
     )

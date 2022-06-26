@@ -53,7 +53,7 @@ const Grade = () => {
         <>
             <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around' }}>
                 <Link to="/admin"><FaArrowLeft /> Back to Dashboard</Link>
-                <div className="page__heading" >
+                <div className="page__heading-ga" >
                     <h1>Add New<br />Pay Grade</h1>
                 </div>
             </div>

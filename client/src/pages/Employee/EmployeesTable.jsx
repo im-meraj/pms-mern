@@ -35,11 +35,19 @@ const EmployeesTable = () => {
             <div className="container">
                 <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                     <Link to="/admin"><FaArrowLeft /> Back to Dashboard</Link>
-                    <div className="page__heading">
+                    <div className="page__heading-c">
                         <h1>Employees<br />Details Table</h1>
                     </div>
                 </div>
+
+                <div className="showEmp__container">
+
+                <div className="se-img">
+                        <img src="https://res.cloudinary.com/immeraj/image/upload/v1656279037/pms/undraw_Personal_data_re_ihde_qu1gj2.png" alt="" />
+                </div>
+
                 <EmployeeTableComponent />
+                </div>
             </div>
         </>
     )

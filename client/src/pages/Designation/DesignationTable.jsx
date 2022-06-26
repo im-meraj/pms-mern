@@ -36,7 +36,7 @@ const DesignationTable = () => {
             <div className="container">
                 <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                     <Link to="/admin"><FaArrowLeft /> Back to Dashboard</Link>
-                    <div className="page__heading">
+                    <div className="page__heading-dest">
                         <h1>Designation<br />Details Table</h1>
                     </div>
                 </div>

@@ -47,6 +47,7 @@ const ManageLeave = () => {
           </h1>
         </div>
       </div>
+      
       <div className="table__container">
         {allLeaveApplications.length > 0 ? (
           <table className="table" cellPadding={5} cellSpacing={30}>

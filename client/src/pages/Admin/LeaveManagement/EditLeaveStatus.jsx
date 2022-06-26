@@ -72,6 +72,13 @@ const EditLeaveStatus = () => {
           </h1>
         </div>
       </div>
+
+      <div className="lau__container">
+
+      <div className="la-img">
+          <img src="https://res.cloudinary.com/immeraj/image/upload/v1656279037/pms/undraw_Preferences_re_49in_ul5hyg.png" alt="" />
+      </div>
+
       {leaveApplication && (
         <div className="modal__container">
           <div className="modal__content">
@@ -87,7 +94,7 @@ const EditLeaveStatus = () => {
                     onChange={onChange}
                     disabled={true}
                   >
-                    <option value="">{leaveApplication[0].LeaveType}</option>
+                    <option value="">{leaveApplication[0] && leaveApplication[0].LeaveType}</option>
                     <option value="Casual">Casual</option>
                     <option value="Sick">Sick</option>
                     <option value="Earned">Earned</option>
@@ -177,6 +184,7 @@ const EditLeaveStatus = () => {
           </div>
         </div>
       )}
+      </div>
     </>
   );
 };

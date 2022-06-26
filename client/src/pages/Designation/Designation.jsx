@@ -45,7 +45,7 @@ const Designation = () => {
     <>
           <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around' }}>
               <Link to="/admin"><FaArrowLeft /> Back to Dashboard</Link>
-              <div className="page__heading" >
+              <div className="page__heading-desa" >
                   <h1>Add New<br />Designation</h1>
               </div>
           </div>
