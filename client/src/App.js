@@ -90,6 +90,8 @@ function App() {
             {/* Employee Routes */}
             <Route path="/employee/showDetails/:id" element={<ShowDetails />} />
             <Route path="/employee/editDetails/:id" element={<EditDetails />} />
+            <Route path="/employee/salaryDetails/:id" element={<DisplaySalary />} />
+            <Route path="/employee/showSalary/:id" element={<SalaryDetails />} />
 
             {/* Leave Management Routes */}
             <Route

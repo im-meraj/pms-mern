@@ -7,6 +7,7 @@ import { getSpecificEmployee } from '../../../features/employee/employeeSlice';
 
 const DisplaySalary = () => {
     const { salaries } = useSelector((state) => state.salary);
+    const { user } = useSelector((state) => state.auth);
     const { id } = useParams();
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     const years = ['2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030'];
@@ -49,9 +50,14 @@ const DisplaySalary = () => {
                     justifyContent: "center",
                 }}
             >
-                <Link to="/admin/manageSalary">
+
+                <Link to={user.role === 'admin' ? "/admin/manageSalary" : "/dashboard"}>
                     <FaArrowLeft /> Back to Manage Salary
                 </Link>
+
+                {/* <Link to="/admin/manageSalary">
+                    <FaArrowLeft /> Back to Manage Salary
+                </Link> */}
                 <div className="page__heading">
                     <h1>
                         List of
@@ -104,7 +110,7 @@ const DisplaySalary = () => {
                             <th>DA</th>
                             <th>Month</th>
                             <th>Year</th>
-                            <th>Amount Paid</th>
+                            <th>Gross Amount</th>
                             <th>View Details</th>
                         </tr>
                     </thead>
@@ -118,9 +124,14 @@ const DisplaySalary = () => {
                                 <td>{salary.year}</td>
                                 <td>{salary.netSalary}</td>
                                 <td>
-                                    <Link to={`/admin/manageSalary/salaryDetails/${salary._id}`} >
+
+                                    <Link to={user.role === 'admin' ? `/admin/manageSalary/salaryDetails/${salary._id}` : `/employee/showSalary/${user._id}`} >
                                         <button className="btn btn-primary" onClick={onClick}>View</button>
                                     </Link>
+
+                                    {/* <Link to={`/admin/manageSalary/salaryDetails/${salary._id}`} >
+                                        <button className="btn btn-primary" onClick={onClick}>View</button>
+                                    </Link> */}
                                 </td>
                             </tr>
                         ))}

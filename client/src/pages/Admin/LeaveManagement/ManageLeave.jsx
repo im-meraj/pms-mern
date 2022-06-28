@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
 import Modal from '../../../components/LeaveManagement/Modal';
 import Spinner from '../../../components/Spinner';
-import { getAllLeaveApplications, getSpecificLeaveApplication } from '../../../features/leave/leaveSlice';
+import { deleteLeaveApplication, getAllLeaveApplications, getSpecificLeaveApplication } from '../../../features/leave/leaveSlice';
 
 const ManageLeave = () => {
     const [openModal, setOpenModal] = useState(false);
@@ -105,6 +105,10 @@ const ManageLeave = () => {
                       <button
                         className="btn-danger btn-delete"
                         style={{ fontSize: "12px" }}
+                        onClick={() => {
+                          dispatch(deleteLeaveApplication(leave._id));
+                          dispatch(getAllLeaveApplications());
+                        }}
                       >
                         <RiDeleteBin6Line />
                       </button>

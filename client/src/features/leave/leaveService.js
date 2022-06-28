@@ -94,13 +94,29 @@ export const updateLeaveApplicationStatus = async (leaveApplication, token) => {
     }
 }
 
+// Delete a specific leave application
+export const deleteLeaveApplication = async (id, token) => {
+    try {
+        const res = await axios.delete(`${API_URL}one/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        return res.data;
+    } catch (error) {
+        const message = (error.res && error.res.data && error.res.data.message) || error.message || error.toString();
+        throw new Error(message);
+    }
+}
+
 const leaveService = {
     addLeaveApplication,
     getLeaveApplications,
     getAllLeaveApplications,
     getSpecificLeaveApplication,
     updateLeaveApplicationStatus,
-    getLeaveApplicationsById
+    getLeaveApplicationsById,
+    deleteLeaveApplication
 }
 
 export default leaveService;

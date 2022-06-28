@@ -129,6 +129,25 @@ export const updateLeaveApplicationStatus = createAsyncThunk(
   }
 );
 
+//Delete a specific leave application
+export const deleteLeaveApplication = createAsyncThunk(
+  "leaveApplicationEmployee/delete",
+  async (id, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user.token;
+      return await leaveService.deleteLeaveApplication(id, token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 
 export const leaveSlice = createSlice({
   name: "leaveApplicationEmployee",
@@ -215,6 +234,22 @@ export const leaveSlice = createSlice({
       state.isLoading = false;
       state.message = action.payload;
     });
+    builder.addCase(deleteLeaveApplication.pending, (state) => {
+      state.isLoading = true;
+    }
+    );
+    builder.addCase(deleteLeaveApplication.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+      state.leaveApplication = action.payload;
+    }
+    );
+    builder.addCase(deleteLeaveApplication.rejected, (state, action) => {
+      state.isError = true;
+      state.isLoading = false;
+      state.message = action.payload;
+    }
+    );
   },
 });
 

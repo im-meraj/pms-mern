@@ -196,6 +196,26 @@ const updateLeaveApplicationStatus = async (req, res) => {
     }
 }
 
+
+/**
+Route:      /leaveApplication/one:id
+Method:     DELETE
+Access:     Private
+Description: Delete a leave application
+Params:     id
+**/
+const deleteLeaveApplication = async (req, res) => {
+    try {
+        const leaveApplication = await LeaveApplicationModel.findByIdAndDelete(req.params.id);
+        return res.status(200).json(leaveApplication);
+    } catch (error) {
+        return res.status(500).json({
+            message: 'Error deleting leave application',
+            error
+        });
+    }
+}
+
 // /**
 // Route:      /department:id
 // Method:     DELETE
@@ -221,5 +241,6 @@ export {
     setLeaveApplication,
     getAllLeaveApplications,
     getSpecificLeaveApplication,
-    updateLeaveApplicationStatus
+    updateLeaveApplicationStatus,
+    deleteLeaveApplication,
 }

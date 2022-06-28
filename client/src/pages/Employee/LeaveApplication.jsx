@@ -87,6 +87,7 @@ const LeaveApplication = () => {
           </div>
         </div>
 
+        <div className="modal__container">
         <section className="form">
           <form onSubmit={onSubmit}>
             <div className="form-group">
@@ -160,6 +161,7 @@ const LeaveApplication = () => {
             </div>
           </form>
         </section>
+        </div>
 
         <div className="table__container">
           {leaveApplications.length > 0 ? (
@@ -202,12 +204,12 @@ const LeaveApplication = () => {
                         </span>
                       </td>
                       <td>
-                        <button
+                        {/* <button
                           className="btn-secondary btn-edit"
                           style={{ fontSize: "12px" }}
                         >
                           <FiEdit />
-                        </button>
+                        </button> */}
                         <button
                           className="btn-danger btn-delete"
                           style={{ fontSize: "12px" }}

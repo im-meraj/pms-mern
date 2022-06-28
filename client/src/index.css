@@ -610,3 +610,16 @@ td {
 .gt-img img {
   width: 100%;
 }
+
+.personalTable {
+  width: 768px;
+}
+
+.personalTable th{
+  color: #000;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: left;
+  padding: 10px;
+  background-color: rgb(212, 212, 212);
+}

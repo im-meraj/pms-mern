@@ -7,6 +7,7 @@ import Spinner from "../../../components/Spinner";
 import { getSpecificEmployee } from "../../../features/employee/employeeSlice";
 
 const SalaryDetails = () => {
+    const { user } = useSelector((state) => state.auth);
     const { id } = useParams();
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     const { salaries } = useSelector((state) => state.salary);
@@ -84,7 +85,7 @@ const SalaryDetails = () => {
                   justifyContent: "center",
               }}
           >
-            <Link to={`/admin/displaySalary/${id}`}>
+            <Link to={user.role === 'admin' ? `/admin/displaySalary/${id}` : `/employee/salaryDetails/${id}`}>
                 <FaArrowLeft /> Back to Manage Salary
             </Link>
             <div className="page__heading">

@@ -50,32 +50,44 @@ const ShowDetails = () => {
           </div>
 
           <div className="table__container">
-              <table className="table" cellPadding={5} cellSpacing={30}>
+              <table className="table personalTable" cellPadding={5} cellSpacing={30}>
                   <thead>
                       <tr>
-                          <th>Personal No.</th>
+                          <th>Personal No. :</th>
                           <td>{employeeDetails && employeeDetails.personalNo}</td>
                       </tr>
                       <tr>
-                            <th>Name</th>
+                            <th>Name :</th>
                             <td>{employeeDetails && employeeDetails.fullname}</td>
                       </tr>
                       <tr>
-                            <th>Email</th>
+                            <th>Email :</th>
                             <td>{employeeDetails && employeeDetails.email}</td>
                       </tr>
                       <tr>
-                            <th>Phone</th>
+                            <th>Phone :</th>
                             <td>{employeeDetails && employeeDetails.phone}</td>
                       </tr>
                       <tr>
-                            <th>Address</th>
+                            <th>Address :</th>
                             <td>{employeeDetails && employeeDetails.address}</td>
                       </tr>
-                        <tr>
-                            <th>Date of Birth</th>
+                      <tr>
+                            <th>Date of Birth :</th>
                             <td>{employeeDetails && new Date(employeeDetails.dob).toLocaleDateString()}</td>
-                        </tr>
+                      </tr>
+                      <tr>
+                            <th>Department :</th>
+                            <td>{employeeDetails && employeeDetails.department.name}</td>
+                      </tr>
+                      <tr>
+                            <th>Designation :</th>
+                            <td>{employeeDetails && employeeDetails.designation.name}</td>
+                      </tr>
+                      <tr>
+                            <th>Grade :</th>
+                            <td>{employeeDetails && employeeDetails.grade.gradeName}</td>
+                      </tr>
                   </thead>
                   <tbody>
                       

@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 // icons
-import { FcLeave, FcViewDetails } from 'react-icons/fc';
+import { FcLeave, FcViewDetails, FcMoneyTransfer } from 'react-icons/fc';
 
 const EmployeeDashboard = () => {
     const navigate = useNavigate();
@@ -31,6 +31,7 @@ const EmployeeDashboard = () => {
           <div className="menu__list-items">
           <li className="menu__list-item"><Link to={`/employee/showDetails/${user._id}`}><FcViewDetails/> Personal Details</Link></li>
           <li className="menu__list-item"><Link to={`/employee/leaveApplication/`}><FcLeave/> Leave Application</Link></li>
+          <li className="menu__list-item"><Link to={`/employee/salaryDetails/${user._id}`}><FcMoneyTransfer/> Salary Details</Link></li>
           </div>
         </ul>
         </div>
