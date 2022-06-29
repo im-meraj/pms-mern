@@ -623,3 +623,39 @@ td {
   padding: 10px;
   background-color: rgb(212, 212, 212);
 }
+
+.employee__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.left__img__emp {
+  width: 40%;
+}
+
+.left__img__emp img {
+  width: 100%;
+}
+
+.admin__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.left__img__admin {
+  width: 20%;
+}
+
+.left__img__admin img {
+  width: 100%;
+}
+
+.admin__menu {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}

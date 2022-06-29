@@ -59,11 +59,17 @@ const DisplaySalary = () => {
                     <FaArrowLeft /> Back to Manage Salary
                 </Link> */}
                 <div className="page__heading">
-                    <h1>
+
+                    {user.role === 'admin' ? <h1>List of
+                        <br />
+                        Previously paid salaries</h1> : <h1>List of previously received<br /> salaries </h1>
+                        }
+
+                    {/* <h1>
                         List of
                         <br />
                         Previously paid salaries
-                    </h1>
+                    </h1> */}
                 </div>
             </div>
 
