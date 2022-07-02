@@ -25,6 +25,7 @@ const EmployeeTableComponent = () => {
             <th>Phone No.</th>
             <th>Department</th>
             <th>Designation</th>
+            <th>Grade</th>
             <th>Manage</th>
           </tr>
         </thead>
@@ -39,6 +40,7 @@ const EmployeeTableComponent = () => {
               <td>{employee.phone === null ? 'Unavailable' : employee.phone}</td>
               <td>{employee.department && employee.department.name}</td>
               <td>{employee.designation && employee.designation.name}</td>
+              <td>{employee.grade && employee.grade.gradeName}</td>
               <td>
               <Link to={`/admin/editEmployee/${employee._id}`}>
                 <button className="btn-secondary btn-edit" style={{ fontSize: '12px' }} onClick={() => {

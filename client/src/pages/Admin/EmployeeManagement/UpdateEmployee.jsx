@@ -51,9 +51,10 @@ const UpdateEmployee = () => {
     department: "",
     designation: "",
     grade: "",
+    role: "",
   });
 
-  const { fullname, email, password, password2, personalNo, department, designation, phone, grade, address } = formData;
+  const { fullname, email, password, password2, personalNo, department, designation, phone, grade, address, role } = formData;
 
   const onChange = (e) => {
     setFormData((prevState) => ({
@@ -79,6 +80,7 @@ const UpdateEmployee = () => {
         grade,
         id,
         address,
+        role,
       }
       dispatch(updateEmployee(userData));
       // dispatch(reset());
@@ -96,6 +98,7 @@ const UpdateEmployee = () => {
       phone: employee.phone,
       grade: "",
       address: employee.address,
+      role: "",
     });
   }
 
@@ -138,6 +141,7 @@ const UpdateEmployee = () => {
                     <th>Department</th>
                     <th>Designation</th>
                     <th>Pay Grade</th>
+                    <th>Role</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -152,6 +156,7 @@ const UpdateEmployee = () => {
                       <td>{employeeObj.department && employeeObj.department.name}</td>
                       <td>{employeeObj.designation && employeeObj.designation.name}</td>
                       <td>{employeeObj.grade && employeeObj.grade.gradeName}</td>
+                      <td>{emp.role}</td>
                       {/* <td>{emp.department.length > 0 ? emp.department[0].name : emp.department[0]}</td> */}
                       {/* <td>{emp.designation.length > 0 ? emp.designation[0].name : emp.designation[0]}</td> */}
                     </tr>
@@ -238,6 +243,15 @@ const UpdateEmployee = () => {
                       {grade.gradeName}
                     </option>
                   ))}
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="role">Role</label>
+                <select className="form-control" id="role" name="role" onChange={onChange}>
+                  <option value="">Select Role</option>
+                  <option value="admin">Admin</option>
+                  <option value="employee">Employee</option>
                 </select>
               </div>
 

@@ -659,3 +659,11 @@ td {
   align-items: center;
   justify-content: space-between;
 }
+
+.page__content--top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* width: 70%; */
+  /* padding-left: 4%; */
+}

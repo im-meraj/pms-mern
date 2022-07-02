@@ -193,6 +193,7 @@ const CalculateSalary = () => {
               </div>
 
               <div className="form-group">
+                  <p style={{color: 'orange'}}>* Save only if it's the salary calculation day.</p>
                   <button type="button" className="btn btn-block" onClick={handleSubmit}>Save to DB</button>
               </div>
             </form>
